@@ -1,5 +1,5 @@
 const YarnCode = () => {
-  return <div>YarnCode</div>
+  return <section className='p-5'>YarnCode</section>
 }
 
 export default YarnCode

@@ -18,6 +18,10 @@ export const ROUTES = {
       EMPLOYEE_CODE: 'employee-code',
       CUSTOMER_CODE: 'customer-code',
       WEBSITE_FABRIC_CODE: 'website-fabric-code'
+    },
+    TEST: {
+      PAGE_01: 'page-01',
+      PAGE_02: 'page-02'
     }
   }
 }
