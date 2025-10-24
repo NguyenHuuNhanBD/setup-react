@@ -25,9 +25,18 @@ const Demo = () => {
       return data
     }
   })
+  const code = `
+         <section className='w-[500px] max-w-[100vw] p-4 text-2xl'>
+            <p className='text-primary-1 max-w-7xl border border-[red] font-lexend-deca'>Nguyen Huu Nhan</p>
+            <FileIcon className='w-6 h-6 text-blue-500' />
+            <p>{commonHelper.formatMoney(1231223)}</p>
+          </section>
+  `
+
   return (
     <main className='p-4'>
       <div className=''>
+        {/* <CodeBlock code={code} language='html' /> */}
         <header className='flex flex-col items-center gap-9'>
           <div className='p-4 flex flex-col gap-5'>
             <p className='font-mono font-bold'>
