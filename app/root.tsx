@@ -4,7 +4,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse }
 import { Provider } from '~/providers'
 
 import type { Route } from './+types/root'
-import './assets/styles/app.css'
+import './app.css'
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
