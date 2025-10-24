@@ -25,6 +25,19 @@ const Demo = () => {
       return data
     }
   })
+
+  const code = `
+        function Counter() {
+  const [count, setCount] = createSignal(0);
+  
+  setInterval(
+    () => setCount(count() + 1),
+    1000
+  );
+
+  return <div>The count is {count()}</div>
+}
+  `
   return (
     <main className='p-4'>
       <div className=''>

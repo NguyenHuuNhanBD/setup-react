@@ -6,7 +6,7 @@ export default [
   route(ROUTES.HOME, './layouts/main-layout.tsx', [
     index('routes/main/home.tsx'),
     route(ROUTES.ABOUT, 'routes/main/about.tsx'),
-    route(ROUTES.INTRODUCE, 'routes/main/introduce.tsx'),
+    route(ROUTES.INTRODUCE, 'routes/main/introduce/index.tsx'),
     route(ROUTES.DEMO, 'routes/demo.tsx')
   ]),
 

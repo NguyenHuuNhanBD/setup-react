@@ -1,6 +1,7 @@
 export const API_ENDPOINT = {
   AUTH: 'auth',
-  CART: 'carts'
+  CART: 'carts',
+  INTRODUCE: 'introduce'
 }
 
 export const API_AUTH = {
@@ -18,5 +19,16 @@ export const API_CART = {
   ADD_TO_CART: {
     URL: 'add-to-cart',
     KEY: [API_ENDPOINT.CART, 'addToCart']
+  }
+}
+
+export const API_INTRODUCE = {
+  GET_LIST: {
+    URL: `${API_ENDPOINT.INTRODUCE}`,
+    KEY: [API_ENDPOINT.INTRODUCE, 'getList']
+  },
+  CREATE: {
+    URL: `${API_ENDPOINT.INTRODUCE}`,
+    KEY: [API_ENDPOINT.INTRODUCE, 'create']
   }
 }

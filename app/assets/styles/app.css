@@ -10,9 +10,41 @@
 
 @theme {
   --font-lexend-deca: 'lexend-deca', sans-serif;
-  /* Color custom */
-  --color-primary-1: var(--primary-1);
+  /* App color */
+  /* Primary */
+  --color-primary-lighter: var(--primary-lighter);
+  --color-primary-light: var(--primary-light);
+  --color-primary-main: var(--primary-main);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-darker: var(--primary-darker);
 
+  /* Secondary */
+  --color-secondary-lighter: var(--secondary-lighter);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-main: var(--secondary-main);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-secondary-darker: var(--secondary-darker);
+
+  /* Info */
+  --color-info-lighter: var(--info-lighter);
+  --color-info-light: var(--info-light);
+  --color-info-main: var(--info-main);
+  --color-info-dark: var(--info-dark);
+  --color-info-darker: var(--info-darker);
+
+  /* Info */
+  --color-warning-lighter: var(--warning-lighter);
+  --color-warning-light: var(--warning-light);
+  --color-warning-main: var(--warning-main);
+  --color-warning-dark: var(--warning-dark);
+  --color-warning-darker: var(--warning-darker);
+
+  /* Error */
+  --color-error-lighter: var(--error-lighter);
+  --color-error-light: var(--error-light);
+  --color-error-main: var(--error-main);
+  --color-error-dark: var(--error-dark);
+  --color-error-darker: var(--error-darker);
   /* Breakpoint custom */
   --breakpoint-xs: 320px;
 }
@@ -90,8 +122,48 @@
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
 
-  /* Color app */
-  --primary-1: #23f10c;
+  /* App color */
+  /* Primary */
+  --primary-lighter: #c8fad6;
+  --primary-light: #5be49b;
+  --primary-main: #00a76f;
+  --primary-dark: #007867;
+  --primary-darker: #004b50;
+
+  /* Secondary */
+  --secondary-lighter: #efd6ff;
+  --secondary-light: #c684ff;
+  --secondary-main: #8e33ff;
+  --secondary-dark: #5119b7;
+  --secondary-darker: #27097a;
+
+  /* Info */
+  --info-lighter: #cafdf5;
+  --info-light: #61f3f3;
+  --info-main: #00b8d9;
+  --info-dark: #006c9c;
+  --info-darker: #003768;
+
+  /* Success */
+  --success-lighter: #d3fcd2;
+  --success-light: #77ed8b;
+  --success-main: #22c55e;
+  --success-dark: #118d57;
+  --success-darker: #065e49;
+
+  /* Waring */
+  --warning-lighter: #fff5cc;
+  --warning-light: #ffab00;
+  --warning-main: #ffab00;
+  --warning-dark: #b76e00;
+  --warning-darker: #7a4100;
+
+  /* Error */
+  --error-lighter: #ffe9d5;
+  --error-light: #ffac82;
+  --error-main: #ff5630;
+  --error-dark: #b71d18;
+  --error-darker: #7a0916;
 }
 
 .dark {
@@ -138,9 +210,37 @@
   }
   html,
   body {
-    @apply font-lexend-deca font-normal bg-white dark:bg-gray-950;
+    @apply font-lexend-deca font-normal bg-white dark:bg-[#141a21];
     @media (prefers-color-scheme: dark) {
       color-scheme: dark;
     }
   }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #72e27f;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #72e27f;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
 }
