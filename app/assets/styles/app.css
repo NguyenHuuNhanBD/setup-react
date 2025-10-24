@@ -47,6 +47,8 @@
   --color-error-darker: var(--error-darker);
   /* Breakpoint custom */
   --breakpoint-xs: 320px;
+
+  --container-custom: 1000px;
 }
 
 @theme inline {

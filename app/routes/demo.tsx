@@ -41,6 +41,7 @@ const Demo = () => {
   return (
     <main className='p-4'>
       <div className=''>
+        {/* <CodeBlock code={code} language='html' /> */}
         <header className='flex flex-col items-center gap-9'>
           <div className='p-4 flex flex-col gap-5'>
             <p className='font-mono font-bold'>
