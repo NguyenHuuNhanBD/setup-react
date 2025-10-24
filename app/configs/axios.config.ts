@@ -6,7 +6,7 @@ import { eErrorCode } from '~/types/enums/errors-code.enum'
 let hasShow401Toast = false
 
 const configs: AxiosRequestConfig = {
-  baseURL: 'https://68aaa2a4909a5835049ca6bb.mockapi.io/api/v1',
+  baseURL: 'https://68faf58e94ec96066024168d.mockapi.io/api/v1',
   headers: {
     'Content-Type': 'application/json',
     'Cache-Control': 'no-cache',

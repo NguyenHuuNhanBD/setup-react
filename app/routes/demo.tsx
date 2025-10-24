@@ -25,14 +25,19 @@ const Demo = () => {
       return data
     }
   })
-  const code = `
-         <section className='w-[500px] max-w-[100vw] p-4 text-2xl'>
-            <p className='text-primary-1 max-w-7xl border border-[red] font-lexend-deca'>Nguyen Huu Nhan</p>
-            <FileIcon className='w-6 h-6 text-blue-500' />
-            <p>{commonHelper.formatMoney(1231223)}</p>
-          </section>
-  `
 
+  const code = `
+        function Counter() {
+  const [count, setCount] = createSignal(0);
+  
+  setInterval(
+    () => setCount(count() + 1),
+    1000
+  );
+
+  return <div>The count is {count()}</div>
+}
+  `
   return (
     <main className='p-4'>
       <div className=''>

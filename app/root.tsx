@@ -21,8 +21,9 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation()
+  // i18n.language.split('-')[0]
   return (
-    <html lang={i18n.language.split('-')[0]}>
+    <html lang={'en'}>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
