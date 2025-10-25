@@ -10,32 +10,21 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '~/components/ui/sidebar'
+import type { ISidebarMenu } from '~/types'
 
-export function NavMain({
-  items
-}: {
-  items: {
-    title: string
-    url: string
-    icon?: React.FC<React.SVGProps<SVGSVGElement>>
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
-}) {
+export interface ISidebarMenuProps {
+  sidebarMenu: ISidebarMenu[]
+}
+
+export function NavMain({ sidebarMenu }: ISidebarMenuProps) {
   const location = useLocation()
-
   return (
-    <SidebarGroup className='p-0'>
+    <SidebarGroup className='p-[15px]'>
       <SidebarMenu>
-        {items.map((item) => {
+        {sidebarMenu.map((item) => {
           const isParentActive = item.items?.some((sub) => location.pathname === sub.url)
           const isChildActive = item.items?.some((sub) => location.pathname === sub.url)
-
-          return item.items && item.items.length > 0 ? (
-            // --- Có submenu ---
+          return (
             <Collapsible
               key={item.title}
               asChild
@@ -48,8 +37,8 @@ export function NavMain({
                     asChild
                     data-active={isParentActive}
                     className={clsx(
-                      'data-[active=true]:bg-[#0E35FF] data-[active=true]:text-white h-[45px] py-[12.5px] px-[15px]',
-                      isParentActive ? 'hover:bg-[#0E35FF]! hover:text-white!' : 'hover:bg-gray-300!'
+                      'data-[active=true]:bg-primary-main data-[active=true]:text-white h-[45px] py-[12.5px] px-[15px] rounded-[12px]',
+                      isParentActive ? 'hover:bg-primary-main! hover:text-white!' : 'hover:bg-gray-300!'
                     )}
                   >
                     <Link to={item.url} className='flex items-center gap-[15px]'>
@@ -59,49 +48,47 @@ export function NavMain({
                           className={clsx(isParentActive ? 'text-white' : 'text-[#A4B5BA]')}
                         />
                       )}
-                      <span>{item.title}</span>
+                      <span className='font-bold'>{item.title}</span>
                       <ChevronDown className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180' />
                     </Link>
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  {item.items.map((subItem) => {
-                    const isSubActive = location.pathname === subItem.url
-                    return (
-                      <SidebarMenuSubItem
-                        key={subItem.title}
-                        className='py-2.5 px-5 h-10 flex items-center justify-start'
-                      >
-                        <SidebarMenuSubButton asChild data-active={isSubActive} className='bg-transparent!'>
-                          <Link to={subItem.url} className='flex items-center gap-[15px]'>
-                            <section className='w-5 h-5 flex items-center justify-center'>
+                  <ul>
+                    {item?.items?.map((subItem) => {
+                      const isSubActive = location.pathname === subItem.url
+                      return (
+                        <SidebarMenuSubItem
+                          key={subItem.title}
+                          className='py-2.5 px-5 h-10 flex items-center justify-start'
+                        >
+                          <SidebarMenuSubButton asChild data-active={isSubActive} className='bg-transparent!'>
+                            <Link to={subItem.url} className='flex items-center gap-[15px] group/item '>
+                              <section className='w-5 h-5 flex items-center justify-center'>
+                                <span
+                                  className={clsx(
+                                    'w-1 h-1 rounded-full group-hover/item:bg-primary-main transition-all duration-300',
+                                    isSubActive ? 'bg-primary-main' : 'bg-black'
+                                  )}
+                                ></span>
+                              </section>
                               <span
-                                className={clsx('w-1 h-1 rounded-[100px]', isSubActive ? 'bg-[#0E35FF]' : 'bg-black')}
-                              ></span>
-                            </section>
-                            <span className={clsx(isSubActive ? 'text-[#0E35FF]' : 'text-black')}>{subItem.title}</span>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    )
-                  })}
+                                className={clsx(
+                                  'group-hover/item:text-primary-main transition-all duration-300',
+                                  isSubActive ? 'text-primary-main' : 'text-black'
+                                )}
+                              >
+                                {subItem.title}
+                              </span>
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      )
+                    })}
+                  </ul>
                 </CollapsibleContent>
               </SidebarMenuItem>
             </Collapsible>
-          ) : (
-            // --- Không có submenu ---
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                asChild
-                data-active={location.pathname === item.url}
-                className='data-[active=true]:bg-red-500/15 data-[active=true]:text-red-500'
-              >
-                <Link to={item.url} className='flex items-center gap-2'>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           )
         })}
       </SidebarMenu>

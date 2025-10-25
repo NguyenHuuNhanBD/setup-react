@@ -1,3 +1,4 @@
 export const TRANSLATE_KEYS = {
-  COMMON: 'common'
+  COMMON: 'common',
+  SIDEBAR_MENU: 'sidebarMenu'
 }

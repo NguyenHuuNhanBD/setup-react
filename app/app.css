@@ -1,15 +1,65 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Font - Gothic A1  */
 @font-face {
-  font-family: 'lexend-deca';
-  src: url('/fonts/lexend-deca/LexendDeca-VariableFont_wght.ttf') format('truetype');
+  font-family: 'Gothic A1';
+  font-weight: 100;
+  src: url('/fonts/gothic-a1/GothicA1-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 200;
+  src: url('/fonts/gothic-a1/GothicA1-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 300;
+  src: url('/fonts/gothic-a1/GothicA1-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 400;
+  src: url('/fonts/gothic-a1/GothicA1-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 500;
+  src: url('/fonts/gothic-a1/GothicA1-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 600;
+  src: url('/fonts/gothic-a1/GothicA1-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 700;
+  src: url('/fonts/gothic-a1/GothicA1-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 800;
+  src: url('/fonts/gothic-a1/GothicA1-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Gothic A1';
+  font-weight: 900;
+  src: url('/fonts/gothic-a1/GothicA1-Black.ttf') format('truetype');
 }
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-lexend-deca: 'lexend-deca', sans-serif;
+  --font-gothic-a1: 'Gothic A1', sans-serif;
   /* App color */
   /* Primary */
   --color-primary-lighter: var(--primary-lighter);
@@ -32,7 +82,7 @@
   --color-info-dark: var(--info-dark);
   --color-info-darker: var(--info-darker);
 
-  /* Info */
+  /* Warning */
   --color-warning-lighter: var(--warning-lighter);
   --color-warning-light: var(--warning-light);
   --color-warning-main: var(--warning-main);
@@ -45,6 +95,10 @@
   --color-error-main: var(--error-main);
   --color-error-dark: var(--error-dark);
   --color-error-darker: var(--error-darker);
+
+  /* Other */
+  --color-black-main: var(--black-main);
+
   /* Breakpoint custom */
   --breakpoint-xs: 320px;
 
@@ -87,7 +141,6 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* App color */
 }
 
 :root {
@@ -128,7 +181,7 @@
   /* Primary */
   --primary-lighter: #c8fad6;
   --primary-light: #5be49b;
-  --primary-main: #00a76f;
+  --primary-main: #0e35ff;
   --primary-dark: #007867;
   --primary-darker: #004b50;
 
@@ -166,6 +219,9 @@
   --error-main: #ff5630;
   --error-dark: #b71d18;
   --error-darker: #7a0916;
+
+  /* Other */
+  --black-main: #333333;
 }
 
 .dark {
@@ -212,18 +268,20 @@
   }
   html,
   body {
-    @apply font-lexend-deca font-normal bg-white dark:bg-[#141a21];
+    @apply font-gothic-a1 font-normal bg-background text-black-main dark:bg-[#141a21];
     @media (prefers-color-scheme: dark) {
       color-scheme: dark;
     }
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
-  body {
-    @apply bg-background text-[#333333];
+
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }

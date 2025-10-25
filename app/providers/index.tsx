@@ -8,7 +8,13 @@ import { QueryProvider } from '~/providers/query-provider'
 export const Provider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <QueryProvider>
-      <ThemeProvider attribute='class' defaultTheme={COMMON.THEMES.LIGHT} enableSystem disableTransitionOnChange>
+      <ThemeProvider
+        attribute='class'
+        defaultTheme={COMMON.THEMES.LIGHT}
+        value={{ light: COMMON.THEMES.LIGHT }}
+        enableSystem
+        disableTransitionOnChange
+      >
         <I18nProvider>{children}</I18nProvider>
       </ThemeProvider>
     </QueryProvider>

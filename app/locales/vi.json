@@ -1,8 +1,0 @@
-{
-  "common": {
-    "product": "Sản phẩm"
-  },
-  "inputValidate": {
-    "fieldCannotBeEmpty": "Thông tin này là bắt buộc"
-  }
-}

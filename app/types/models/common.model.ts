@@ -12,3 +12,18 @@ export interface IApiResponse<T> {
   status?: string | number
   errorCode?: string
 }
+
+export interface IAppTranslations {
+  (key: string, keyPrefix: string, values?: Record<string, any>): string
+}
+
+export interface ISidebarMenu {
+  title: string
+  url: string
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>
+  isActive?: boolean
+  items?: {
+    title: string
+    url: string
+  }[]
+}

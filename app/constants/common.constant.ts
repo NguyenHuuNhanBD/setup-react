@@ -1,6 +1,6 @@
 export const COMMON = {
   LOCALES: {
-    VI: 'vi',
+    KO: 'ko',
     EN: 'en'
   },
   THEMES: {
