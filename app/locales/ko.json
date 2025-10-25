@@ -14,7 +14,18 @@
       "websiteFabricCode": "홈페이지 원단 코드"
     }
   },
+  "inputLabel": {
+    "email": "이메일",
+    "password": "이메일 입력"
+  },
+  "inputPlaceholder": {
+    "email": "비밀번호",
+    "password": "비밀번호 입력"
+  },
   "inputValidate": {
-    "fieldCannotBeEmpty": "Thông tin này là bắt buộc"
+    "fieldCannotBeEmpty": "이 정보는 필수입니다"
+  },
+  "action": {
+    "login": "로그인"
   }
 }

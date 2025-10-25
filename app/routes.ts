@@ -10,12 +10,12 @@ export default [
   ]),
 
   layout('./layouts/auth-layout.tsx', [
-    route(ROUTES.AUTH.LOGIN, 'routes/auth/login.tsx'),
-    route(ROUTES.AUTH.REGISTER, 'routes/auth/register.tsx')
+    route(`${ROUTES.ADMIN.BASE}/${ROUTES.ADMIN.AUTH.LOGIN}`, 'routes/auth/login/login.tsx')
   ]),
 
   // Admin
   layout('./layouts/admin-layout.tsx', [
+    route(`${ROUTES.ADMIN.BASE}`, 'routes/admin/index.tsx'),
     route(
       `${ROUTES.ADMIN.BASE}/${ROUTES.ADMIN.BASE_LINE_INFORMATION_MANAGEMENT.YARN_CODE}`,
       'routes/admin/baseline-information-management/yarn-code.tsx'

@@ -1,5 +1,7 @@
 import { z } from 'zod'
-import { eTestFormKey } from '~/types/enums/form.enum'
+import { TRANSLATE_KEYS } from '~/constants'
+import type { IAppTranslations } from '~/types'
+import { eLoginFormKey, eTestFormKey } from '~/types/enums/form.enum'
 
 export const getTestSchema = (t: (key: string) => string) =>
   z
@@ -36,3 +38,11 @@ export const getTestSchema = (t: (key: string) => string) =>
     })
 
 export type TestFormSchema = z.infer<ReturnType<typeof getTestSchema>>
+
+export const getLoginSchema = (t: IAppTranslations) =>
+  z.object({
+    [eLoginFormKey.Email]: z.string().nonempty({ message: t(TRANSLATE_KEYS.INPUT_VALIDATE, 'fieldCannotBeEmpty') }),
+    [eLoginFormKey.Password]: z.string().nonempty({ message: t(TRANSLATE_KEYS.INPUT_VALIDATE, 'fieldCannotBeEmpty') })
+  })
+
+export type LoginFormSchema = z.infer<ReturnType<typeof getLoginSchema>>

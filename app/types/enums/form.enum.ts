@@ -6,3 +6,8 @@ export enum eTestFormKey {
   Bio = 'bio',
   Email = 'email'
 }
+
+export enum eLoginFormKey {
+  Email = 'email',
+  Password = 'password'
+}

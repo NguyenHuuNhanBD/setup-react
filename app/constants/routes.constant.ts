@@ -10,6 +10,9 @@ export const ROUTES = {
   },
   ADMIN: {
     BASE: 'admin',
+    AUTH: {
+      LOGIN: 'login'
+    },
     BASE_LINE_INFORMATION_MANAGEMENT: {
       YARN_CODE: 'yarn-code',
       ITEM_CODE: 'item-code',

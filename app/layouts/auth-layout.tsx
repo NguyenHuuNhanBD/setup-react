@@ -1,15 +1,10 @@
 import { Outlet } from 'react-router'
 
+export function meta() {
+  return [{ title: 'ERP System - Login' }, { name: 'ERP Application', content: 'Welcome to ERP' }]
+}
 const AuthLayout = () => {
-  return (
-    <>
-      <header>This is header auth</header>
-      <main>
-        <Outlet />
-      </main>
-      <footer>This is footer auth</footer>
-    </>
-  )
+  return <Outlet />
 }
 
 export default AuthLayout
