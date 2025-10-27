@@ -1,6 +1,8 @@
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useTranslation } from 'react-i18next'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
+import GlobalLoader from '~/components/common/global-loader/global-loader'
+import { Toaster } from '~/components/ui/sonner'
 import { Provider } from '~/providers'
 
 import type { Route } from './+types/root'
@@ -42,6 +44,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <Provider>
+      <Toaster position='top-right' richColors duration={3000} offset={{ top: 90 }} />
+      <GlobalLoader />
       <Outlet />
       <ReactQueryDevtools initialIsOpen={false} />
     </Provider>

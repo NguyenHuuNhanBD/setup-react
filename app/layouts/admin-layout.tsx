@@ -64,7 +64,7 @@ const AdminLayout = () => {
             </Button>
           </section>
         </header>
-        <section className='py-5 px-[30px]'>
+        <section className='py-5 px-[30px] relative h-full'>
           <Outlet />
         </section>
       </SidebarInset>

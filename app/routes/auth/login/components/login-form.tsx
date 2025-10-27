@@ -8,10 +8,12 @@ import { Input } from '~/components/ui/input'
 import { ROUTES, TRANSLATE_KEYS } from '~/constants'
 import { type LoginFormSchema, getLoginSchema } from '~/helpers/schemas.helper'
 import useAppTranslations from '~/hooks/use-app-translations'
+import useGlobalLoaderStore from '~/stores/global-loader'
 import { eLoginFormKey } from '~/types/enums/form.enum'
 
 const LoginForm = () => {
   const { t } = useAppTranslations()
+  const { startLoading, stopLoading } = useGlobalLoaderStore()
   const formSchema = getLoginSchema(t)
   const navigate = useNavigate()
   const form = useForm<LoginFormSchema>({
