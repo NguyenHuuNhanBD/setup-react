@@ -1,7 +1,6 @@
-import type { IAppTranslations } from '~/types'
-
 import { BaselineInformationManagementIcon } from '../assets/icons'
 import { ROUTES } from '../constants/routes.constant'
+import { type IAppTranslations, eYarnType } from '../types'
 import { TRANSLATE_KEYS } from './translate-keys.constant'
 
 export const DATA = {
@@ -62,6 +61,26 @@ export const DATA = {
       {
         label: 'Done',
         value: 'DONE'
+      }
+    ]
+  },
+  GET_YARN_TYPE_OPTIONS: (t: IAppTranslations) => {
+    return [
+      {
+        label: t(TRANSLATE_KEYS.ENUMS, 'yarnType.spunYarn'),
+        value: eYarnType.SpunYarn
+      },
+      {
+        label: t(TRANSLATE_KEYS.ENUMS, 'yarnType.dty'),
+        value: eYarnType.Dty
+      },
+      {
+        label: t(TRANSLATE_KEYS.ENUMS, 'yarnType.spandex'),
+        value: eYarnType.Spandex
+      },
+      {
+        label: t(TRANSLATE_KEYS.ENUMS, 'yarnType.other'),
+        value: eYarnType.Other
       }
     ]
   },

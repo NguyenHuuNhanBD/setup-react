@@ -4,5 +4,6 @@ export const TRANSLATE_KEYS = {
   ACTION: 'action',
   INPUT_VALIDATE: 'inputValidate',
   INPUT_LABEL: 'inputLabel',
-  INPUT_PLACEHOLDER: 'inputPlaceholder'
+  INPUT_PLACEHOLDER: 'inputPlaceholder',
+  ENUMS: 'enums'
 }

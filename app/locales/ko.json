@@ -20,10 +20,29 @@
   },
   "inputPlaceholder": {
     "email": "비밀번호",
-    "password": "비밀번호 입력"
+    "password": "비밀번호 입력",
+    "selectYarnType": "원사구분 선택"
   },
   "inputValidate": {
     "fieldCannotBeEmpty": "이 정보는 필수입니다"
+  },
+  "enums": {
+    "yarnType": {
+      "spunYarn": "방적사",
+      "dty": "DTY(포리)",
+      "spandex": "스판",
+      "other": "기타"
+    },
+    "table": {
+      "yarnCode": {
+        "yarnType": "원사구분",
+        "yarnName": "원사명",
+        "yarnColor": "원사 색상",
+        "notes": "비고",
+        "dateOfRegistration": "등록일",
+        "editOrDelete": "수정 / 삭제"
+      }
+    }
   },
   "action": {
     "login": "로그인"
