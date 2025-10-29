@@ -1,6 +1,7 @@
 {
   "common": {
-    "product": "Sản phẩm"
+    "product": "Sản phẩm",
+    "searchResults": "검색 결과"
   },
   "sidebarMenu": {
     "baselineInformationManagement": {
@@ -21,7 +22,9 @@
   "inputPlaceholder": {
     "email": "비밀번호",
     "password": "비밀번호 입력",
-    "selectYarnType": "원사구분 선택"
+    "selectYarnType": "원사구분 선택",
+    "selectTheOriginalName": "원사명 선택",
+    "selectTheColor": "색상 선택"
   },
   "inputValidate": {
     "fieldCannotBeEmpty": "이 정보는 필수입니다"
@@ -44,7 +47,16 @@
       }
     }
   },
+  "label": {
+    "yarnType": "원사구분",
+    "yarnName": "원사명",
+    "yarnColor": "원사 색상"
+  },
   "action": {
-    "login": "로그인"
+    "login": "로그인",
+    "search": "검색",
+    "deleteSelection": "선택 삭제",
+    "settingYarnClassification": "원사구분 설정",
+    "newRegistration": "신규 등록"
   }
 }

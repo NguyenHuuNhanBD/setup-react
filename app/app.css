@@ -99,6 +99,9 @@
   /* Other */
   --color-black-main: var(--black-main);
   --color-gray-main: var(--gray-main);
+  --color-gray-bg: var(--gray-bg);
+  --color-light-gray: var(--light-gray);
+  --color-light-gray-dark: var(--light-gray-dark);
 
   /* Breakpoint custom */
   --breakpoint-xs: 320px;
@@ -190,7 +193,7 @@
   --primary-lighter: #c8fad6;
   --primary-light: #5be49b;
   --primary-main: #0e35ff;
-  --primary-dark: #007867;
+  --primary-dark: #2338a4;
   --primary-darker: #004b50;
 
   /* Secondary */
@@ -231,6 +234,9 @@
   /* Other */
   --black-main: #333333;
   --gray-main: #a4b5ba;
+  --light-gray: #f2f4f7;
+  --light-gray-dark: #e3e4eb;
+  --gray-bg: #fafafa;
 }
 
 .dark {
@@ -287,6 +293,29 @@
       color-scheme: dark;
     }
   }
+  /*  Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-main);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
 }
 
 @layer utilities {
@@ -297,5 +326,8 @@
   .scrollbar-hide {
     -ms-overflow-style: none; /* IE, Edge */
     scrollbar-width: none; /* Firefox */
+  }
+  .main-shadow {
+    box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.05);
   }
 }

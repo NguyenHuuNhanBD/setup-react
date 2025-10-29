@@ -1,19 +1,12 @@
 import type { Column } from '@tanstack/react-table'
-import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react'
-import { Button } from '~/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '~/components/ui/dropdown-menu'
+import { ChevronDownIconCustom } from '~/assets/icons'
 import { cn } from '~/lib/utils'
 
 interface DataTableColumnHeaderProps<TData, TValue> extends React.HTMLAttributes<HTMLDivElement> {
   column: Column<TData, TValue>
   title: string
 }
+
 export function DataTableColumnHeader<TData, TValue>({
   column,
   title,
@@ -22,37 +15,19 @@ export function DataTableColumnHeader<TData, TValue>({
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
   }
+
+  const sorted = column.getIsSorted()
+
+  const handleSort = () => {
+    column.toggleSorting(sorted === 'asc')
+  }
+
   return (
-    <div className={cn('flex items-center gap-2', className)}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant='ghost' size='sm' className='data-[state=open]:bg-accent -ml-3 h-8'>
-            <span>{title}</span>
-            {column.getIsSorted() === 'desc' ? (
-              <ArrowDown />
-            ) : column.getIsSorted() === 'asc' ? (
-              <ArrowUp />
-            ) : (
-              <ChevronsUpDown />
-            )}
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align='start' onCloseAutoFocus={(e) => e.preventDefault()}>
-          <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <ArrowUp />
-            Asc
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <ArrowDown />
-            Desc
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <EyeOff />
-            Hide
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <section className={cn('flex items-center select-none', className)} onClick={handleSort}>
+      <span>{title}</span>
+      <ChevronDownIconCustom
+        className={cn('!w-5 !h-5 transition-transform duration-200 text-black-main', sorted === 'asc' && 'rotate-180')}
+      />
+    </section>
   )
 }

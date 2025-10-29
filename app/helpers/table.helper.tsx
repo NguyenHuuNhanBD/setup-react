@@ -1,5 +1,6 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
+import { DeleteIcon, EditIcon } from '~/assets/icons'
 import ContentBody from '~/components/common/tables/content-body'
 import { DataTableColumnHeader } from '~/components/common/tables/data-table-column-header'
 import TitleHead from '~/components/common/tables/title-head'
@@ -90,18 +91,24 @@ const tableHelper = {
       {
         id: 'select',
         header: ({ table }) => (
-          <Checkbox
-            checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
-            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-            aria-label='Select all'
-          />
+          <section className='flex items-center justify-center'>
+            <Checkbox
+              checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
+              onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+              aria-label='Select all'
+              className='w-5 h-5'
+            />
+          </section>
         ),
         cell: ({ row }) => (
-          <Checkbox
-            checked={row.getIsSelected()}
-            onCheckedChange={(value) => row.toggleSelected(!!value)}
-            aria-label='Select row'
-          />
+          <section className='flex items-center justify-center'>
+            <Checkbox
+              checked={row.getIsSelected()}
+              onCheckedChange={(value) => row.toggleSelected(!!value)}
+              aria-label='Select row'
+              className='w-5 h-5'
+            />
+          </section>
         ),
         size: 50,
         enableSorting: false,
@@ -116,31 +123,39 @@ const tableHelper = {
       },
       {
         accessorKey: eYarnCodeTableKey.YarnName,
-        header: () => <TitleHead title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.yarnName')} />,
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.yarnName')} />
+        ),
         cell: ({ row }) => {
           return <ContentBody content={row.getValue(eYarnCodeTableKey.YarnName)} />
         },
-        size: 387
+        size: 200
       },
       {
         accessorKey: eYarnCodeTableKey.YarnColor,
-        header: () => <TitleHead title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.yarnColor')} />,
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.yarnColor')} />
+        ),
         cell: ({ row }) => {
           return <ContentBody content={row.getValue(eYarnCodeTableKey.YarnColor)} />
         },
-        size: 387
+        size: 200
       },
       {
         accessorKey: eYarnCodeTableKey.Notes,
-        header: () => <TitleHead title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.notes')} />,
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.notes')} />
+        ),
         cell: ({ row }) => {
           return <ContentBody content={row.getValue(eYarnCodeTableKey.Notes)} />
         },
-        size: 387
+        size: 200
       },
       {
         accessorKey: eYarnCodeTableKey.DateOfRegistration,
-        header: () => <TitleHead title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.dateOfRegistration')} />,
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title={t(TRANSLATE_KEYS.ENUMS, 'table.yarnCode.dateOfRegistration')} />
+        ),
         cell: ({ row }) => {
           return <ContentBody content={row.getValue(eYarnCodeTableKey.DateOfRegistration)} />
         },
@@ -148,30 +163,16 @@ const tableHelper = {
       },
       {
         id: 'actions',
-        header: () => <TitleHead title={'수정 / 삭제'} />,
+        header: () => <TitleHead title={'수정 / 삭제'} className='text-center' />,
         cell: ({ row }) => {
-          const payment = row.original
           return (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant='ghost' className='h-8 w-8 p-0'>
-                  <span className='sr-only'>Open menu</span>
-                  <MoreHorizontal className='h-4 w-4' />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align='end'>
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>
-                  Copy payment ID
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>View customer</DropdownMenuItem>
-                <DropdownMenuItem>View payment details</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <section className='flex items-center justify-center gap-[5px]'>
+              <EditIcon className='w-[30px] h-[30px] text-gray-main cursor-pointer' />
+              <DeleteIcon className='w-[30px] h-[30px] text-gray-main cursor-pointer' />
+            </section>
           )
         },
-        size: 120
+        size: 80
       }
     ]
     return columns

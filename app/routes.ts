@@ -18,7 +18,7 @@ export default [
     route(`${ROUTES.ADMIN.BASE}`, 'routes/admin/index.tsx'),
     route(
       `${ROUTES.ADMIN.BASE}/${ROUTES.ADMIN.BASE_LINE_INFORMATION_MANAGEMENT.YARN_CODE}`,
-      'routes/admin/baseline-information-management/yarn-code.tsx'
+      'routes/admin/baseline-information-management/yarn-code/yarn-code.tsx'
     ),
     route(
       `${ROUTES.ADMIN.BASE}/${ROUTES.ADMIN.BASE_LINE_INFORMATION_MANAGEMENT.ITEM_CODE}`,

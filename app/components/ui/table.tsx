@@ -29,10 +29,15 @@ function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
 }
 
 function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
+  const classNameCustom = 'data-[state=selected]:bg-light-gray-dark'
   return (
     <tr
       data-slot='table-row'
-      className={cn('hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors', className)}
+      className={cn(
+        'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
+        classNameCustom,
+        className
+      )}
       {...props}
     />
   )
