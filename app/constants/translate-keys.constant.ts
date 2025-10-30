@@ -6,5 +6,6 @@ export const TRANSLATE_KEYS = {
   INPUT_LABEL: 'inputLabel',
   INPUT_PLACEHOLDER: 'inputPlaceholder',
   ENUMS: 'enums',
-  LABEL: 'label'
+  LABEL: 'label',
+  CONFIRM: 'confirm'
 }

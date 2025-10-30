@@ -57,6 +57,11 @@
     "search": "검색",
     "deleteSelection": "선택 삭제",
     "settingYarnClassification": "원사구분 설정",
-    "newRegistration": "신규 등록"
+    "newRegistration": "신규 등록",
+    "cancel": "취소",
+    "check": "확인"
+  },
+  "confirm": {
+    "areYouSureYouWantToDeleteIt": "정말 삭제하시겠어요?"
   }
 }

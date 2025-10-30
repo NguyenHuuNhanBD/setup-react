@@ -11,15 +11,24 @@ import {
 } from '@tanstack/react-table'
 import clsx from 'clsx'
 import { DataTablePagination } from '~/components/common/tables/data-table-pagination'
+import { Skeleton } from '~/components/ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   classNameTable?: string
+  loading?: boolean
+  skeletonLength?: number
 }
 
-const TableCustom = <TData, TValue>({ columns, data, classNameTable }: DataTableProps<TData, TValue>) => {
+const TableCustom = <TData, TValue>({
+  columns,
+  data,
+  classNameTable,
+  loading,
+  skeletonLength = 9
+}: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -42,9 +51,9 @@ const TableCustom = <TData, TValue>({ columns, data, classNameTable }: DataTable
       rowSelection
     }
   })
-
+  const skeletonRows = Array.from({ length: skeletonLength })
   return (
-    <section className='flex flex-col gap-5 w-full '>
+    <section className='flex flex-col gap-[30px] w-full'>
       <section className='main-shadow'>
         <Table className={clsx('table-fixed bg-white', classNameTable)}>
           <TableHeader>
@@ -65,7 +74,17 @@ const TableCustom = <TData, TValue>({ columns, data, classNameTable }: DataTable
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {loading ? (
+              skeletonRows.map((_, i) => (
+                <TableRow key={`skeleton-${i}`}>
+                  {columns.map((_, j) => (
+                    <TableCell key={`skeleton-cell-${j}`} className='border-[2px] border-light-gray'>
+                      <Skeleton className='h-3' />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
@@ -77,7 +96,7 @@ const TableCustom = <TData, TValue>({ columns, data, classNameTable }: DataTable
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center border border-border'>
+                <TableCell colSpan={columns.length} className='h-24 text-center border-[2px] border-light-gray'>
                   No results.
                 </TableCell>
               </TableRow>
@@ -85,7 +104,7 @@ const TableCustom = <TData, TValue>({ columns, data, classNameTable }: DataTable
           </TableBody>
         </Table>
       </section>
-      <DataTablePagination table={table} />
+      {!loading && <DataTablePagination table={table} />}
     </section>
   )
 }

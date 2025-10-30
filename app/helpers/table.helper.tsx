@@ -4,6 +4,7 @@ import { DeleteIcon, EditIcon } from '~/assets/icons'
 import ContentBody from '~/components/common/tables/content-body'
 import { DataTableColumnHeader } from '~/components/common/tables/data-table-column-header'
 import TitleHead from '~/components/common/tables/title-head'
+import DialogCustom from '~/components/customs/dialog-custom'
 import { Button } from '~/components/ui/button'
 import { Checkbox } from '~/components/ui/checkbox'
 import {
@@ -86,7 +87,7 @@ const tableHelper = {
     ]
     return columns
   },
-  getColumnsYarnCodeTable: (t: IAppTranslations) => {
+  getColumnsYarnCodeTable: (t: IAppTranslations, onDeleteAction?: (data?: any) => void) => {
     const columns: ColumnDef<any>[] = [
       {
         id: 'select',
@@ -167,12 +168,20 @@ const tableHelper = {
         cell: ({ row }) => {
           return (
             <section className='flex items-center justify-center gap-[5px]'>
-              <EditIcon className='w-[30px] h-[30px] text-gray-main cursor-pointer' />
-              <DeleteIcon className='w-[30px] h-[30px] text-gray-main cursor-pointer' />
+              <DialogCustom
+                hiddenHeader
+                triggerBtn={<EditIcon className='w-[30px] h-[30px] text-gray-main cursor-pointer' />}
+              >
+                <p className='!text-center'>{t(TRANSLATE_KEYS.CONFIRM, 'areYouSureYouWantToDeleteIt')}</p>
+              </DialogCustom>
+              <DeleteIcon
+                className='w-[30px] h-[30px] text-gray-main cursor-pointer'
+                onClick={() => onDeleteAction?.(row.original)}
+              />
             </section>
           )
         },
-        size: 80
+        size: 100
       }
     ]
     return columns

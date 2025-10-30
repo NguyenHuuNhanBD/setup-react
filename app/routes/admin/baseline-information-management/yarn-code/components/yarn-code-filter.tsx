@@ -15,7 +15,10 @@ const YarnCodeFilter = () => {
           <p className='w-[80px] text-black-main leading-[20px] tracking-[-0.5%] font-semibold'>
             {t(TRANSLATE_KEYS.LABEL, 'yarnType')}
           </p>
-          <SelectCustom placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectYarnType')}>
+          <SelectCustom
+            placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectYarnType')}
+            classNameSelectTrigger='w-[129px]'
+          >
             {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => {
               return (
                 <SelectItem key={opt.value} value={opt.value}>
@@ -31,7 +34,10 @@ const YarnCodeFilter = () => {
           <p className='w-[80px] text-black-main leading-[20px] tracking-[-0.5%] font-semibold'>
             {t(TRANSLATE_KEYS.LABEL, 'yarnName')}
           </p>
-          <SelectCustom placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheOriginalName')}>
+          <SelectCustom
+            placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheOriginalName')}
+            classNameSelectTrigger='w-[115px]'
+          >
             {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => {
               return (
                 <SelectItem key={opt.value} value={opt.value}>
@@ -47,7 +53,10 @@ const YarnCodeFilter = () => {
           <p className='w-[80px] text-black-main leading-[20px] tracking-[-0.5%] font-semibold'>
             {t(TRANSLATE_KEYS.LABEL, 'yarnColor')}
           </p>
-          <SelectCustom placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheColor')}>
+          <SelectCustom
+            placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheColor')}
+            classNameSelectTrigger='w-[102px]'
+          >
             {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => {
               return (
                 <SelectItem key={opt.value} value={opt.value}>

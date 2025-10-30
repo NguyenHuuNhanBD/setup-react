@@ -2,12 +2,13 @@ import { Select, SelectContent, SelectGroup, SelectTrigger, SelectValue } from '
 
 interface ISelectCustomProps {
   placeholder?: string
+  classNameSelectTrigger?: string
   children?: React.ReactNode
 }
-const SelectCustom = ({ placeholder = 'Select', children }: ISelectCustomProps) => {
+const SelectCustom = ({ placeholder = 'Select', classNameSelectTrigger, children }: ISelectCustomProps) => {
   return (
     <Select>
-      <SelectTrigger isHiddenBorder>
+      <SelectTrigger isHiddenBorder className={classNameSelectTrigger}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent onCloseAutoFocus={(e) => e.preventDefault()}>

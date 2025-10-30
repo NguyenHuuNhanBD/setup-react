@@ -1,85 +1,88 @@
+import { useEffect, useState } from 'react'
+
 import type { Table } from '@tanstack/react-table'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '~/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
+import { cn } from '~/lib/utils'
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>
 }
 
 export function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
+  const totalPages = table.getPageCount()
+  const currentPage = table.getState().pagination.pageIndex + 1
+  const maxVisiblePages = 4
+
+  // 🧠 giữ cửa sổ hiển thị riêng, chỉ update khi bấm next/prev
+  const [windowStart, setWindowStart] = useState(1)
+
+  // đảm bảo không vượt quá phạm vi
+  const windowEnd = Math.min(windowStart + maxVisiblePages - 1, totalPages)
+  const visiblePages = Array.from({ length: windowEnd - windowStart + 1 }, (_, i) => windowStart + i)
+
+  // 🡄 khi bấm prev
+  const handlePrev = () => {
+    if (table.getCanPreviousPage()) {
+      table.previousPage()
+      // chỉ trượt nếu currentPage nằm trước cửa sổ
+      if (currentPage === windowStart) {
+        setWindowStart(Math.max(1, windowStart - 1))
+      }
+    }
+  }
+
+  // 🡆 khi bấm next
+  const handleNext = () => {
+    if (table.getCanNextPage()) {
+      table.nextPage()
+      // chỉ trượt nếu currentPage nằm ở cuối cửa sổ
+      if (currentPage === windowEnd) {
+        setWindowStart(Math.min(totalPages - maxVisiblePages + 1, windowStart + 1))
+      }
+    }
+  }
+
+  // nếu trang giảm về đầu (vd reset table) thì đảm bảo không vượt phạm vi
+  useEffect(() => {
+    if (currentPage < windowStart) {
+      setWindowStart(currentPage)
+    }
+  }, [currentPage])
+
   return (
-    <div className='flex items-center justify-between px-2'>
-      <div className='text-muted-foreground flex-1 text-sm'>
-        {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div>
-      <div className='flex items-center space-x-6 lg:space-x-8'>
-        <div className='flex items-center space-x-2'>
-          <p className='text-sm font-medium'>Rows per page</p>
-          <Select
-            value={`${table.getState().pagination.pageSize}`}
-            onValueChange={(value) => {
-              table.setPageSize(Number(value))
-            }}
-          >
-            <SelectTrigger className='h-8'>
-              <SelectValue placeholder={table.getState().pagination.pageSize} />
-            </SelectTrigger>
-            <SelectContent side='top' onCloseAutoFocus={(e) => e.preventDefault()}>
-              {[10, 20, 25, 30, 40, 50].map((pageSize) => (
-                <SelectItem key={pageSize} value={`${pageSize}`}>
-                  {pageSize}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className='flex w-[100px] items-center justify-center text-sm font-medium'>
-          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </div>
-        <div className='flex items-center space-x-2'>
-          <Button
-            variant='outline'
-            size='icon'
-            className='hidden size-8 lg:flex'
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className='sr-only'>Go to first page</span>
-            <ChevronsLeft />
-          </Button>
-          <Button
-            variant='outline'
-            size='icon'
-            className='size-8'
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className='sr-only'>Go to previous page</span>
-            <ChevronLeft />
-          </Button>
-          <Button
-            variant='outline'
-            size='icon'
-            className='size-8'
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className='sr-only'>Go to next page</span>
-            <ChevronRight />
-          </Button>
-          <Button
-            variant='outline'
-            size='icon'
-            className='hidden size-8 lg:flex'
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className='sr-only'>Go to last page</span>
-            <ChevronsRight />
-          </Button>
-        </div>
-      </div>
-    </div>
+    <section className='flex items-center gap-[6.5px] bg-[#dfe4e6] py-[10px] px-[2.5px] rounded-[10px] h-[38px] ml-auto'>
+      <ChevronLeft
+        className={cn(
+          'size-6 cursor-pointer !select-none',
+          table.getCanPreviousPage() ? 'text-primary-main' : 'text-gray-400 cursor-not-allowed'
+        )}
+        onClick={handlePrev}
+      />
+
+      {visiblePages.map((page, index) => (
+        <Button
+          key={`page-${index}`}
+          variant={page === currentPage ? 'default' : 'ghost'}
+          className={cn(
+            'size-8 text-sm transition-all duration-200 relative z-10',
+            page === currentPage
+              ? 'bg-white text-black-main shadow-sm scale-[1.1]'
+              : 'text-primary-main hover:bg-white hover:text-black-main'
+          )}
+          onClick={() => table.setPageIndex(page - 1)}
+        >
+          {page}
+        </Button>
+      ))}
+
+      <ChevronRight
+        className={cn(
+          'size-6 cursor-pointer !select-none',
+          table.getCanNextPage() ? 'text-primary-main' : 'text-gray-400 cursor-not-allowed'
+        )}
+        onClick={handleNext}
+      />
+    </section>
   )
 }

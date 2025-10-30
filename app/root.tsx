@@ -1,4 +1,3 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useTranslation } from 'react-i18next'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from 'react-router'
 import GlobalLoader from '~/components/common/global-loader/global-loader'
@@ -47,7 +46,7 @@ export default function App() {
       <Toaster position='top-right' richColors duration={3000} offset={{ top: 90 }} />
       <GlobalLoader />
       <Outlet />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </Provider>
   )
 }
