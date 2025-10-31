@@ -1,4 +1,4 @@
-import { eYarnCodeFormKey } from '~/types/enums/form.enum'
+import { eSettingYarnFormKey, eYarnCodeFormKey } from '~/types/enums/form.enum'
 
 const formHelper = {
   getDefaultValuesYarnCode: () => {
@@ -7,6 +7,11 @@ const formHelper = {
       [eYarnCodeFormKey.YarnName]: '',
       [eYarnCodeFormKey.YarnColor]: '',
       [eYarnCodeFormKey.Note]: ''
+    }
+  },
+  getDefaultValuesSettingYarn: () => {
+    return {
+      [eSettingYarnFormKey.YarnType]: ''
     }
   }
 }

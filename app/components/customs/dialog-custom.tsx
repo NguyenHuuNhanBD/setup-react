@@ -20,6 +20,7 @@ interface IDialogCustomProps {
   okText?: string
   classNameHeader?: string
   classNameContent?: string
+  classNameWrapperChildrenContent?: string
   showDescription?: boolean
   hiddenCancelAction?: boolean
   hiddenOkAction?: boolean
@@ -40,6 +41,7 @@ const DialogCustom = ({
   okText = 'Ok',
   classNameHeader,
   classNameContent,
+  classNameWrapperChildrenContent,
   showDescription = false,
   hiddenCancelAction = false,
   hiddenOkAction = false,
@@ -71,7 +73,14 @@ const DialogCustom = ({
         </DialogHeader>
 
         {/* Main content */}
-        <section className={clsx('px-[15px]', hiddenFooter && 'pb-[15px]', hiddenHeader && 'pt-[15px]')}>
+        <section
+          className={clsx(
+            'px-[15px]',
+            hiddenFooter && 'pb-[15px]',
+            hiddenHeader && 'pt-[15px]',
+            classNameWrapperChildrenContent
+          )}
+        >
           {children}
         </section>
 

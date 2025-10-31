@@ -19,3 +19,8 @@ export enum eYarnCodeFormKey {
   YarnColor = 'yarnColor',
   Note = 'note'
 }
+
+// Setting yarn
+export enum eSettingYarnFormKey {
+  YarnType = 'yarnType'
+}

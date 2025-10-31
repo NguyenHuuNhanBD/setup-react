@@ -101,5 +101,25 @@ export const DATA = {
         key: eYarnCodeFormKey.Note
       }
     ]
+  },
+  GET_ACCOUNT_TYPE: (t: IAppTranslations) => {
+    return [
+      {
+        name: t(TRANSLATE_KEYS.ENUMS, 'accountType.main'),
+        color: '#0E35FF'
+      },
+      {
+        name: t(TRANSLATE_KEYS.ENUMS, 'accountType.order'),
+        color: '#00C6A2'
+      },
+      {
+        name: t(TRANSLATE_KEYS.ENUMS, 'accountType.shipping'),
+        color: '#F68903'
+      },
+      {
+        name: t(TRANSLATE_KEYS.ENUMS, 'accountType.workOrder'),
+        color: '#965EF5'
+      }
+    ]
   }
 }

@@ -5,13 +5,17 @@ import { FullLogoIcon } from '~/assets/icons'
 import { Button } from '~/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form'
 import { Input } from '~/components/ui/input'
-import { ROUTES, TRANSLATE_KEYS } from '~/constants'
+import { TRANSLATE_KEYS } from '~/constants'
 import { type LoginFormSchema, getLoginSchema } from '~/helpers/schemas.helper'
 import useAppTranslations from '~/hooks/use-app-translations'
 import useGlobalLoaderStore from '~/stores/global-loader'
+import { eLoginStep } from '~/types'
 import { eLoginFormKey } from '~/types/enums/form.enum'
 
-const LoginForm = () => {
+interface ILoginFormProps {
+  onChangeStep: (step: eLoginStep) => void
+}
+const LoginForm = ({ onChangeStep }: ILoginFormProps) => {
   const { t } = useAppTranslations()
   const { startLoading, stopLoading } = useGlobalLoaderStore()
   const formSchema = getLoginSchema(t)
@@ -38,7 +42,7 @@ const LoginForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className='flex flex-col gap-[45px] bg-white p-[45px] rounded-[15px] w-[400px]'
       >
-        <FullLogoIcon className='w-[160px] h-[24px] self-center' />
+        <FullLogoIcon className='w-[160px] h-[24px] self-center text-primary-main' />
 
         <section className='flex flex-col gap-8'>
           {/* Email */}
@@ -76,7 +80,8 @@ const LoginForm = () => {
           type='button'
           disabled={!form.formState.isValid}
           onClick={() => {
-            navigate(`/${ROUTES.ADMIN.BASE}/${ROUTES.ADMIN.BASE_LINE_INFORMATION_MANAGEMENT.YARN_CODE}`)
+            onChangeStep(eLoginStep.SelectAccountType)
+            // navigate(`/${ROUTES.ADMIN.BASE}/${ROUTES.ADMIN.BASE_LINE_INFORMATION_MANAGEMENT.YARN_CODE}`)
           }}
           className='!h-10 rounded-[10px] bg-primary-main text-white cursor-pointer transition-all duration-300 hover:bg-primary-main/80'
         >

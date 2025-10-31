@@ -44,6 +44,12 @@
       "spandex": "스판",
       "other": "기타"
     },
+    "accountType": {
+      "main": "메인",
+      "order": "오더",
+      "shipping": "출고",
+      "workOrder": "작업지시서"
+    },
     "table": {
       "yarnCode": {
         "yarnType": "원사구분",
@@ -58,7 +64,8 @@
   "label": {
     "yarnType": "원사구분",
     "yarnName": "원사명",
-    "yarnColor": "원사 색상"
+    "yarnColor": "원사 색상",
+    "newYarnClassification": "새 원사 구분"
   },
   "title": {
     "newRegistrationOfYarn": "원사 (원자재)  신규등록 "

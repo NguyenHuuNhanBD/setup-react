@@ -9,7 +9,7 @@ export function TeamSwitcher() {
     <section
       className={clsx('flex items-center justify-center gap-[10px]', !isCollapsed ? 'justify-start' : 'justify-center')}
     >
-      <LogoIcon className='w-6 h-6 shrink-0' />
+      <LogoIcon className='w-6 h-6 shrink-0 text-primary-main' />
       {!isCollapsed && <ErpIcon className='w-[126px] h-5' />}
     </section>
   )

@@ -6,8 +6,13 @@ import useAppTranslations from '~/hooks/use-app-translations'
 interface IYarnCodeActionProps {
   searchResults?: number
   onNewRegistrationAction: () => void
+  onSettingYarnClassfication: () => void
 }
-const YarnCodeAction = ({ searchResults = 0, onNewRegistrationAction }: IYarnCodeActionProps) => {
+const YarnCodeAction = ({
+  searchResults = 0,
+  onNewRegistrationAction,
+  onSettingYarnClassfication
+}: IYarnCodeActionProps) => {
   const { t } = useAppTranslations()
   return (
     <section className='flex flex-wrap items-center justify-between gap-5'>
@@ -18,7 +23,7 @@ const YarnCodeAction = ({ searchResults = 0, onNewRegistrationAction }: IYarnCod
         <Button className='bg-[white] text-black-main main-shadow'>
           {t(TRANSLATE_KEYS.ACTION, 'deleteSelection')}
         </Button>
-        <Button className='bg-[#965EF5]'>
+        <Button className='bg-[#965EF5]' onClick={onSettingYarnClassfication}>
           <CategoryIcon className='!w-5 !h-5 text-white' />
           <span>{t(TRANSLATE_KEYS.ACTION, 'settingYarnClassification')}</span>
         </Button>

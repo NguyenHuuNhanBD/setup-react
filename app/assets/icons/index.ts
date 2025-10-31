@@ -8,6 +8,7 @@ import { ReactComponent as FullLogoIcon } from './full-logo.svg?react'
 import { ReactComponent as LogoIcon } from './logo.svg?react'
 // Menu items
 import { ReactComponent as BaselineInformationManagementIcon } from './menu-items/baseline-information-management.svg?react'
+import { ReactComponent as NotFoundBlobIcon } from './not-found-blob.svg?react'
 import { ReactComponent as RequiredIcon } from './required.svg?react'
 import { ReactComponent as SidebarToggleIcon } from './sidebar-toggle.svg?react'
 
@@ -21,6 +22,7 @@ export {
   FileIcon,
   FullLogoIcon,
   LogoIcon,
+  NotFoundBlobIcon,
   RequiredIcon,
   SidebarToggleIcon
 }

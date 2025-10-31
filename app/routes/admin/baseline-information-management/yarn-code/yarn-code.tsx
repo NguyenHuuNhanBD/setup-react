@@ -8,10 +8,16 @@ import TableCustom from '~/components/customs/table-custom'
 import YarnCodeForm from '~/components/forms/baseline-information-management/yarn-code-form'
 import { TRANSLATE_KEYS } from '~/constants'
 import formHelper from '~/helpers/form.helper'
-import { type YarnCodeFormSchema, getYarnCodeSchema } from '~/helpers/schemas.helper'
+import {
+  type SettingYarnFormSchema,
+  type YarnCodeFormSchema,
+  getSettingYarnSchema,
+  getYarnCodeSchema
+} from '~/helpers/schemas.helper'
 import tableHelper from '~/helpers/table.helper'
 import useAppTranslations from '~/hooks/use-app-translations'
 import BaseLayoutContent from '~/layouts/base-layout-content'
+import SettingYarnClassification from '~/routes/admin/baseline-information-management/yarn-code/components/setting-yarn-classification'
 import YarnCodeAction from '~/routes/admin/baseline-information-management/yarn-code/components/yarn-code-action'
 import YarnCodeFilter from '~/routes/admin/baseline-information-management/yarn-code/components/yarn-code-filter'
 import useGlobalLoaderStore from '~/stores/global-loader'
@@ -23,12 +29,16 @@ export function meta() {
 
 const YarnCode = () => {
   const { t } = useAppTranslations()
+  const { startLoading, stopLoading } = useGlobalLoaderStore()
+  // State
   const [open, setOpen] = useState(false)
   const [openUpsertForm, setOpenUpsertForm] = useState(false)
+  const [openSettingYarn, setOpenSettingYarn] = useState(false)
   const [inforYarnItemDelete, setInforYarnItemDelete] = useState<any>(undefined)
   const [dataYarnCode, setDataYarnCode] = useState<IYarnCode | undefined>(undefined)
-  const { startLoading, stopLoading } = useGlobalLoaderStore()
   const [isLoading, setIsLoading] = useState(true)
+
+  // Data
   const data = Array.from({ length: 100 }, (_, i) => ({
     id: `id-${i + 1}`,
     yarnName: `${String.fromCharCode(65 + (i % 26))}방적사`,
@@ -45,6 +55,15 @@ const YarnCode = () => {
     defaultValues: formHelper.getDefaultValuesYarnCode(),
     mode: 'all'
   })
+
+  // Form setting yarn
+  const settingYarnSchema = getSettingYarnSchema(t)
+  const settingYarnform = useForm<SettingYarnFormSchema>({
+    resolver: zodResolver(settingYarnSchema),
+    defaultValues: formHelper.getDefaultValuesSettingYarn(),
+    mode: 'all'
+  })
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false)
@@ -92,6 +111,9 @@ const YarnCode = () => {
         onNewRegistrationAction={() => {
           setOpenUpsertForm(true)
         }}
+        onSettingYarnClassfication={() => {
+          setOpenSettingYarn(true)
+        }}
       />
 
       {/* Table */}
@@ -135,6 +157,20 @@ const YarnCode = () => {
         title={t(TRANSLATE_KEYS.TITLE, 'newRegistrationOfYarn')}
       >
         <YarnCodeForm form={form} data={dataYarnCode} />
+      </DialogCustom>
+
+      {/* Dialog setting*/}
+      <DialogCustom
+        open={openSettingYarn}
+        onOpenChange={setOpenSettingYarn}
+        classNameWrapperChildrenContent='!p-0'
+        cancelText={t(TRANSLATE_KEYS.ACTION, 'cancel')}
+        okText={t(TRANSLATE_KEYS.ACTION, 'check')}
+        classNameContent='sm:max-w-[600px] gap-0'
+        onOkAction={handleEditYarnItem}
+        title={t(TRANSLATE_KEYS.TITLE, 'newRegistrationOfYarn')}
+      >
+        <SettingYarnClassification form={settingYarnform} />
       </DialogCustom>
     </BaseLayoutContent>
   )
