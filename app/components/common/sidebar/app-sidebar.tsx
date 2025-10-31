@@ -3,7 +3,7 @@ import * as React from 'react'
 import { NavMain } from '~/components/common/sidebar/nav-main'
 import { TeamSwitcher } from '~/components/common/sidebar/team-switcher'
 import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '~/components/ui/sidebar'
-import { DATA } from '~/constants'
+import layoutHelper from '~/helpers/layout.helper'
 import useAppTranslations from '~/hooks/use-app-translations'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -14,7 +14,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent className='mt-[15px] scrollbar-hide'>
-        <NavMain sidebarMenu={DATA.GET_SIDEBAR_MENU(t)} />
+        <NavMain sidebarMenu={layoutHelper.getSidebarMenu(t)} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

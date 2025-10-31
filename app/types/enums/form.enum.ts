@@ -11,3 +11,11 @@ export enum eLoginFormKey {
   Email = 'email',
   Password = 'password'
 }
+
+// Yarn code
+export enum eYarnCodeFormKey {
+  YarnType = 'yarnType',
+  YarnName = 'yarnName',
+  YarnColor = 'yarnColor',
+  Note = 'note'
+}

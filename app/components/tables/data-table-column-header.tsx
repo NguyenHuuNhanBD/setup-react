@@ -26,7 +26,10 @@ export function DataTableColumnHeader<TData, TValue>({
     <section className={cn('flex items-center select-none', className)} onClick={handleSort}>
       <span>{title}</span>
       <ChevronDownIconCustom
-        className={cn('!w-5 !h-5 transition-transform duration-200 text-black-main', sorted === 'asc' && 'rotate-180')}
+        className={cn(
+          '!w-5 !h-5 transition-transform duration-200 text-black-main shrink-0',
+          sorted === 'asc' && 'rotate-180'
+        )}
       />
     </section>
   )

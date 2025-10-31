@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { TRANSLATE_KEYS } from '~/constants'
-import type { IAppTranslations } from '~/types'
-import { eLoginFormKey, eTestFormKey } from '~/types/enums/form.enum'
+import { type IAppTranslations, eYarnType } from '~/types'
+import { eLoginFormKey, eTestFormKey, eYarnCodeFormKey } from '~/types/enums/form.enum'
 
 export const getTestSchema = (t: (key: string) => string) =>
   z
@@ -46,3 +46,20 @@ export const getLoginSchema = (t: IAppTranslations) =>
   })
 
 export type LoginFormSchema = z.infer<ReturnType<typeof getLoginSchema>>
+
+// Yarn code
+export const getYarnCodeSchema = (t: IAppTranslations) =>
+  z.object({
+    [eYarnCodeFormKey.YarnType]: z.enum(eYarnType, {
+      message: t(TRANSLATE_KEYS.INPUT_VALIDATE, 'fieldCannotBeEmpty')
+    }),
+    [eYarnCodeFormKey.YarnName]: z
+      .string()
+      .nonempty({ message: t(TRANSLATE_KEYS.INPUT_VALIDATE, 'fieldCannotBeEmpty') }),
+    [eYarnCodeFormKey.YarnColor]: z
+      .string()
+      .nonempty({ message: t(TRANSLATE_KEYS.INPUT_VALIDATE, 'fieldCannotBeEmpty') }),
+    [eYarnCodeFormKey.Note]: z.string().nonempty({ message: t(TRANSLATE_KEYS.INPUT_VALIDATE, 'fieldCannotBeEmpty') })
+  })
+
+export type YarnCodeFormSchema = z.infer<ReturnType<typeof getYarnCodeSchema>>

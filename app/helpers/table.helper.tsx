@@ -1,10 +1,9 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { DeleteIcon, EditIcon } from '~/assets/icons'
-import ContentBody from '~/components/common/tables/content-body'
-import { DataTableColumnHeader } from '~/components/common/tables/data-table-column-header'
-import TitleHead from '~/components/common/tables/title-head'
-import DialogCustom from '~/components/customs/dialog-custom'
+import ContentBody from '~/components/tables/content-body'
+import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
+import TitleHead from '~/components/tables/title-head'
 import { Button } from '~/components/ui/button'
 import { Checkbox } from '~/components/ui/checkbox'
 import {
@@ -16,7 +15,7 @@ import {
   DropdownMenuTrigger
 } from '~/components/ui/dropdown-menu'
 import { TRANSLATE_KEYS } from '~/constants'
-import { type IAppTranslations, eYarnCodeTableKey } from '~/types'
+import { type IAppTranslations, type IYarnCode, eYarnCodeTableKey } from '~/types'
 
 const tableHelper = {
   getColumnsDemoTable: (t: IAppTranslations) => {
@@ -87,7 +86,11 @@ const tableHelper = {
     ]
     return columns
   },
-  getColumnsYarnCodeTable: (t: IAppTranslations, onDeleteAction?: (data?: any) => void) => {
+  getColumnsYarnCodeTable: (
+    t: IAppTranslations,
+    onDeleteAction?: (data?: IYarnCode) => void,
+    onEditAction?: (data?: IYarnCode) => void
+  ) => {
     const columns: ColumnDef<any>[] = [
       {
         id: 'select',
@@ -160,7 +163,7 @@ const tableHelper = {
         cell: ({ row }) => {
           return <ContentBody content={row.getValue(eYarnCodeTableKey.DateOfRegistration)} />
         },
-        size: 100
+        size: 120
       },
       {
         id: 'actions',
@@ -168,12 +171,10 @@ const tableHelper = {
         cell: ({ row }) => {
           return (
             <section className='flex items-center justify-center gap-[5px]'>
-              <DialogCustom
-                hiddenHeader
-                triggerBtn={<EditIcon className='w-[30px] h-[30px] text-gray-main cursor-pointer' />}
-              >
-                <p className='!text-center'>{t(TRANSLATE_KEYS.CONFIRM, 'areYouSureYouWantToDeleteIt')}</p>
-              </DialogCustom>
+              <EditIcon
+                className='w-[30px] h-[30px] text-gray-main cursor-pointer'
+                onClick={() => onEditAction?.(row.original)}
+              />
               <DeleteIcon
                 className='w-[30px] h-[30px] text-gray-main cursor-pointer'
                 onClick={() => onDeleteAction?.(row.original)}

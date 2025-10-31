@@ -13,6 +13,7 @@ import {
   useFormContext,
   useFormState
 } from 'react-hook-form'
+import { RequiredIcon } from '~/assets/icons'
 import { Label } from '~/components/ui/label'
 import { cn } from '~/lib/utils'
 
@@ -71,25 +72,35 @@ const FormItemContext = React.createContext<FormItemContextValue>({} as FormItem
 
 function FormItem({ className, ...props }: React.ComponentProps<'div'>) {
   const id = React.useId()
-
+  const classNameCustom = 'gap-[5px]'
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div data-slot='form-item' className={cn('grid gap-2', className)} {...props} />
+      <div data-slot='form-item' className={cn('grid', classNameCustom, className)} {...props} />
     </FormItemContext.Provider>
   )
 }
-
-function FormLabel({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
+function FormLabel({
+  isRequired = false,
+  className,
+  ...props
+}: React.ComponentProps<typeof LabelPrimitive.Root> & { isRequired?: boolean }) {
   const { error, formItemId } = useFormField()
-  const classNameCustom = ''
+
   return (
-    <Label
-      data-slot='form-label'
-      data-error={!!error}
-      className={cn('data-[error=true]:text-destructive', 'font-semibold', className)}
-      htmlFor={formItemId}
-      {...props}
-    />
+    <section className='flex items-center gap-2'>
+      <Label
+        data-slot='form-label'
+        data-error={!!error}
+        className={cn('data-[error=true]:text-destructive', className)}
+        htmlFor={formItemId}
+        {...props}
+      />
+      {isRequired && (
+        <section className='text-destructive flex items-start w-[8px] !h-[19px]' aria-hidden='true'>
+          <RequiredIcon className='w-[6px] h-[6px]' />
+        </section>
+      )}
+    </section>
   )
 }
 

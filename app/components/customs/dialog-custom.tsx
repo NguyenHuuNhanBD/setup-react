@@ -19,11 +19,13 @@ interface IDialogCustomProps {
   cancelText?: string
   okText?: string
   classNameHeader?: string
+  classNameContent?: string
   showDescription?: boolean
   hiddenCancelAction?: boolean
   hiddenOkAction?: boolean
   hiddenHeader?: boolean
   hiddenFooter?: boolean
+  disabledOkBtn?: boolean
   onCancelAction?: () => void
   onOkAction?: () => void | Promise<void>
   triggerBtn?: React.ReactNode
@@ -37,11 +39,13 @@ const DialogCustom = ({
   cancelText = 'Cancel',
   okText = 'Ok',
   classNameHeader,
+  classNameContent,
   showDescription = false,
   hiddenCancelAction = false,
   hiddenOkAction = false,
   hiddenHeader = false,
   hiddenFooter = false,
+  disabledOkBtn = false,
   onCancelAction,
   onOkAction,
   triggerBtn,
@@ -53,7 +57,7 @@ const DialogCustom = ({
       {triggerBtn && <DialogTrigger asChild>{triggerBtn}</DialogTrigger>}
 
       {/* Dialog content */}
-      <DialogContent className='sm:max-w-[425px] p-0 gap-[15px]'>
+      <DialogContent className={clsx('sm:max-w-[425px] p-0 gap-[15px]', classNameContent)}>
         {/* Dialog header */}
         <DialogHeader
           className={clsx(
@@ -73,22 +77,26 @@ const DialogCustom = ({
 
         {/* Dialog footer */}
         {!hiddenFooter && (
-          <DialogFooter className='border-t border-light-gray p-[15px] gap-[15px]'>
-            {!hiddenCancelAction && (
-              <DialogClose asChild className='flex-1'>
-                <Button
-                  variant='outline'
-                  className='flex-1 bg-light-gray border-transparent'
-                  onClick={() => onCancelAction?.()}
-                >
-                  {cancelText}
-                </Button>
-              </DialogClose>
-            )}
-            {!hiddenOkAction && (
-              <Button className='flex-1' onClick={() => onOkAction?.()}>
-                {okText}
-              </Button>
+          <DialogFooter className='border-t border-light-gray p-[15px]'>
+            {!hiddenCancelAction && !hiddenOkAction && (
+              <section className='flex-1 flex items-center justify-center gap-[15px]'>
+                {!hiddenCancelAction && (
+                  <DialogClose asChild>
+                    <Button
+                      variant='outline'
+                      className='bg-light-gray border-transparent w-[142px]'
+                      onClick={() => onCancelAction?.()}
+                    >
+                      {cancelText}
+                    </Button>
+                  </DialogClose>
+                )}
+                {!hiddenOkAction && (
+                  <Button onClick={() => onOkAction?.()} disabled={disabledOkBtn} className='w-[142px]'>
+                    {okText}
+                  </Button>
+                )}
+              </section>
             )}
           </DialogFooter>
         )}

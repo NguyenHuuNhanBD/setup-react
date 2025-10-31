@@ -1,6 +1,5 @@
-import { BaselineInformationManagementIcon } from '../assets/icons'
-import { ROUTES } from '../constants/routes.constant'
 import { type IAppTranslations, eYarnType } from '../types'
+import { eYarnCodeFormKey } from '../types/enums/form.enum'
 import { TRANSLATE_KEYS } from './translate-keys.constant'
 
 export const DATA = {
@@ -84,22 +83,22 @@ export const DATA = {
       }
     ]
   },
-  GET_SIDEBAR_MENU: (t: IAppTranslations) => {
-    const basePath = `/${ROUTES.ADMIN.BASE}`
-    const subRoutes = ROUTES.ADMIN.BASE_LINE_INFORMATION_MANAGEMENT
-    const items = Object.entries(subRoutes).map(([key, value]) => {
-      const lowerKey = key.toLowerCase().replace(/_([a-z])/g, (_, c) => c.toUpperCase())
-      return {
-        title: t(TRANSLATE_KEYS.SIDEBAR_MENU, `baselineInformationManagement.${lowerKey}`),
-        url: `${basePath}/${value}`
-      }
-    })
+  GET_BASE_INPUT_YARN_CODE: (t: IAppTranslations) => {
     return [
       {
-        icon: BaselineInformationManagementIcon,
-        title: t(TRANSLATE_KEYS.SIDEBAR_MENU, 'baselineInformationManagement.title'),
-        url: '#',
-        items
+        label: t(TRANSLATE_KEYS.INPUT_LABEL, 'yarnName'),
+        placeholder: t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'yarnName'),
+        key: eYarnCodeFormKey.YarnName
+      },
+      {
+        label: t(TRANSLATE_KEYS.INPUT_LABEL, 'yarnColor'),
+        placeholder: t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'yarnColor'),
+        key: eYarnCodeFormKey.YarnColor
+      },
+      {
+        label: t(TRANSLATE_KEYS.INPUT_LABEL, 'note'),
+        placeholder: t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'note'),
+        key: eYarnCodeFormKey.Note
       }
     ]
   }

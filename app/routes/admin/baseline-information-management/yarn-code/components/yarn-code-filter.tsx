@@ -7,9 +7,9 @@ import useAppTranslations from '~/hooks/use-app-translations'
 const YarnCodeFilter = () => {
   const { t } = useAppTranslations()
   return (
-    <section className='main-shadow px-[15px] py-[9.5px] rounded-[15px] flex items-center justify-between gap-[30px]'>
+    <section className='main-shadow px-[15px] py-[9.5px] rounded-[15px] flex flex-wrap items-center justify-between gap-[30px]'>
       {/* Filter */}
-      <section className='flex items-center gap-[30px]'>
+      <section className='flex flex-wrap items-center gap-[30px]'>
         {/* Yarn type */}
         <section className='flex items-center gap-[15px]'>
           <p className='w-[80px] text-black-main leading-[20px] tracking-[-0.5%] font-semibold'>

@@ -7,5 +7,6 @@ export const TRANSLATE_KEYS = {
   INPUT_PLACEHOLDER: 'inputPlaceholder',
   ENUMS: 'enums',
   LABEL: 'label',
-  CONFIRM: 'confirm'
+  CONFIRM: 'confirm',
+  TITLE: 'title'
 }

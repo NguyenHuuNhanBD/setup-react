@@ -1,24 +1,34 @@
+import clsx from 'clsx'
 import { Bell, Calendar } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
-import { SidebarTrigger } from '~/components/ui/sidebar'
+import { SidebarTrigger, useSidebar } from '~/components/ui/sidebar'
 
 interface IHeaderProps {
   pageTitle?: string
 }
 const Header = ({ pageTitle }: IHeaderProps) => {
+  const { state, isMobile } = useSidebar()
+  const isCollapsed = state === 'collapsed'
   return (
-    <header className='flex h-[76px] shrink-0 items-center justify-between transition-[width,height] ease-linear py-5 px-[30px] shadow-sm'>
+    <header
+      className={clsx(
+        'flex flex-wrap gap-[15px] shrink-0 items-center justify-between transition-all ease-linear py-5 px-[30px] shadow-sm fixed top-0 right-0 z-50',
+        'bg-[#fafafa]/20 backdrop-blur-sm',
+        !isMobile && (isCollapsed ? 'left-[4rem]' : 'left-[16rem]'),
+        isMobile && 'left-0'
+      )}
+    >
       <section className='flex items-center gap-[30px]'>
         <SidebarTrigger className='cursor-pointer' />
-        <p className='font-bold text-[22px] leading-[30px] tracking-[-0.5%] hidden sm:block'>{pageTitle}</p>
+        <p className='font-bold text-[22px] leading-[30px] tracking-[-0.5%] hidden md:block'>{pageTitle}</p>
       </section>
-      <section className='flex items-center gap-[30px]'>
+      <section className='flex flex-wrap items-center gap-[30px]'>
         {/* Icon */}
         <section className='flex items-center gap-[15px]'>
           {/* Notification */}
-          <section className='relative cursor-pointer'>
+          <section className='relative cursor-pointer hidden md:block'>
             <Bell className='w-7 h-7' />
             <Badge
               className='absolute -top-2 -right-2 h-5 min-w-5 rounded-full p-1 font-mono tabular-nums bg-[#F66C7D]'
@@ -28,7 +38,7 @@ const Header = ({ pageTitle }: IHeaderProps) => {
             </Badge>
           </section>
           {/* Calendar */}
-          <section className='relative cursor-pointer'>
+          <section className='relative cursor-pointer hidden md:block'>
             <Calendar className='w-7 h-7' />
             <Badge
               className='absolute -top-2 -right-2 h-5 min-w-5 rounded-full p-1 font-mono tabular-nums bg-[#00C6A2]'
@@ -51,7 +61,7 @@ const Header = ({ pageTitle }: IHeaderProps) => {
         </section>
 
         {/* Action */}
-        <Button className='border-[2px] border-[#E1E6E8] rounded-[10px] h-9 py-2 px-5 bg-[#F2F4F7] text-[#A4B5BA] font-semibold leading-[20px] tracking-[-0.5%]'>
+        <Button className='border-[2px] border-[#E1E6E8] rounded-[10px] h-9 py-2 px-5 bg-[#F2F4F7] text-[#A4B5BA] font-semibold leading-[20px] tracking-[-0.5%] !hidden md:!block'>
           종료
         </Button>
       </section>

@@ -10,7 +10,7 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 import clsx from 'clsx'
-import { DataTablePagination } from '~/components/common/tables/data-table-pagination'
+import { DataTablePagination } from '~/components/tables/data-table-pagination'
 import { Skeleton } from '~/components/ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 

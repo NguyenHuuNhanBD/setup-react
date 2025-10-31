@@ -47,7 +47,7 @@ function Button({
   }) {
   const Comp = asChild ? Slot : 'button'
   const classNameCustom =
-    '!h-10 font-semibold leading-[20px] tracking-[-0.5%] py-[10px] px-5 flex item-center gap-[10px] hover:opacity-80 cursor-pointer'
+    'font-semibold leading-[20px] tracking-[-0.5%] py-[10px] px-5 flex item-center gap-[10px] hover:opacity-80 cursor-pointer'
   return (
     <Comp data-slot='button' className={cn(buttonVariants({ variant, size, className }), classNameCustom)} {...props} />
   )

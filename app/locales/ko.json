@@ -7,7 +7,7 @@
     "baselineInformationManagement": {
       "title": "기준 정보 관리",
       "yarnCode": "원사 코드",
-      "itemCode": "품목(생지) 코드",
+      "itemCode": "품목(생지)",
       "fabricCode": "원단 코드",
       "companyCode": "업체코드",
       "employeeCode": "직원코드",
@@ -17,14 +17,22 @@
   },
   "inputLabel": {
     "email": "이메일",
-    "password": "이메일 입력"
+    "password": "이메일 입력",
+    "yarnType": "원사구분",
+    "yarnName": "원사명",
+    "yarnColor": "원사 색상 (컬러입력가능)",
+    "note": "비고"
   },
   "inputPlaceholder": {
     "email": "비밀번호",
     "password": "비밀번호 입력",
     "selectYarnType": "원사구분 선택",
     "selectTheOriginalName": "원사명 선택",
-    "selectTheColor": "색상 선택"
+    "selectTheColor": "색상 선택",
+    "yarnType": "선택",
+    "yarnName": "내용 입력",
+    "yarnColor": "원사 색상 (컬러입력가능)",
+    "note": "내용 입력"
   },
   "inputValidate": {
     "fieldCannotBeEmpty": "이 정보는 필수입니다"
@@ -51,6 +59,9 @@
     "yarnType": "원사구분",
     "yarnName": "원사명",
     "yarnColor": "원사 색상"
+  },
+  "title": {
+    "newRegistrationOfYarn": "원사 (원자재)  신규등록 "
   },
   "action": {
     "login": "로그인",

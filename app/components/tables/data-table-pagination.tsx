@@ -51,7 +51,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
   }, [currentPage])
 
   return (
-    <section className='flex items-center gap-[6.5px] bg-[#dfe4e6] py-[10px] px-[2.5px] rounded-[10px] h-[38px] ml-auto'>
+    <section className='flex items-center gap-[6.5px] bg-[#dfe4e6] py-[10px] px-[2.5px] rounded-[10px] h-[38px] ml-auto main-shadow'>
       <ChevronLeft
         className={cn(
           'size-6 cursor-pointer !select-none',
@@ -64,8 +64,9 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
         <Button
           key={`page-${index}`}
           variant={page === currentPage ? 'default' : 'ghost'}
+          size={'lg'}
           className={cn(
-            'size-8 text-sm transition-all duration-200 relative z-10',
+            'size-8 text-sm transition-all duration-200 relative z-10 !h-10',
             page === currentPage
               ? 'bg-white text-black-main shadow-sm scale-[1.1]'
               : 'text-primary-main hover:bg-white hover:text-black-main'
