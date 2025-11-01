@@ -14,7 +14,8 @@ const Header = ({ pageTitle }: IHeaderProps) => {
   return (
     <header
       className={clsx(
-        'flex flex-wrap gap-[15px] shrink-0 items-center justify-between transition-all ease-linear py-5 px-[30px] shadow-sm fixed top-0 right-0 z-50',
+        'flex flex-wrap gap-space-main shrink-0 items-center justify-between transition-all ease-linear py-5 px-[30px] shadow-sm',
+        'fixed top-0 right-0 z-50',
         'bg-[#fafafa]/20 backdrop-blur-sm',
         !isMobile && (isCollapsed ? 'left-[4rem]' : 'left-[16rem]'),
         isMobile && 'left-0'
@@ -26,7 +27,7 @@ const Header = ({ pageTitle }: IHeaderProps) => {
       </section>
       <section className='flex flex-wrap items-center gap-[30px]'>
         {/* Icon */}
-        <section className='flex items-center gap-[15px]'>
+        <section className='flex items-center gap-space-main'>
           {/* Notification */}
           <section className='relative cursor-pointer hidden md:block'>
             <Bell className='w-7 h-7' />

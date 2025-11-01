@@ -17,7 +17,7 @@ import {
 import { TRANSLATE_KEYS } from '~/constants'
 import { type IAppTranslations, type IYarnCode, eYarnCodeTableKey } from '~/types'
 
-const tableHelper = {
+const columnHelper = {
   getColumnsDemoTable: (t: IAppTranslations) => {
     const columns: ColumnDef<any>[] = [
       {
@@ -189,4 +189,4 @@ const tableHelper = {
   }
 }
 
-export default tableHelper
+export default columnHelper

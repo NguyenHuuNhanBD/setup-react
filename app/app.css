@@ -107,6 +107,9 @@
   --breakpoint-xs: 320px;
 
   --container-custom: 1000px;
+  --height-header: 76px;
+  --spacing-space-main: 15px;
+  --radius-radius-main: 15px;
 }
 
 @theme inline {

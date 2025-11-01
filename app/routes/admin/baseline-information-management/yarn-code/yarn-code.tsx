@@ -7,6 +7,8 @@ import DialogCustom from '~/components/customs/dialog-custom'
 import TableCustom from '~/components/customs/table-custom'
 import YarnCodeForm from '~/components/forms/baseline-information-management/yarn-code-form'
 import { TRANSLATE_KEYS } from '~/constants'
+import { filterHelper, tableHelper } from '~/helpers'
+import columnHelper from '~/helpers/column.helper'
 import formHelper from '~/helpers/form.helper'
 import {
   type SettingYarnFormSchema,
@@ -14,14 +16,13 @@ import {
   getSettingYarnSchema,
   getYarnCodeSchema
 } from '~/helpers/schemas.helper'
-import tableHelper from '~/helpers/table.helper'
 import useAppTranslations from '~/hooks/use-app-translations'
 import BaseLayoutContent from '~/layouts/base-layout-content'
 import SettingYarnClassification from '~/routes/admin/baseline-information-management/yarn-code/components/setting-yarn-classification'
 import YarnCodeAction from '~/routes/admin/baseline-information-management/yarn-code/components/yarn-code-action'
-import YarnCodeFilter from '~/routes/admin/baseline-information-management/yarn-code/components/yarn-code-filter'
+import YarnCodeFilters from '~/routes/admin/baseline-information-management/yarn-code/components/yarn-code-filters'
 import useGlobalLoaderStore from '~/stores/global-loader'
-import { type IYarnCode, eYarnType } from '~/types'
+import { type IYarnCode, type IYarnCodeFilters, eYarnType } from '~/types'
 
 export function meta() {
   return [{ title: 'ERP - Yarn code' }, { name: 'ERP Yarn code', content: 'Welcome to ERP' }]
@@ -30,6 +31,7 @@ export function meta() {
 const YarnCode = () => {
   const { t } = useAppTranslations()
   const { startLoading, stopLoading } = useGlobalLoaderStore()
+  const maxHeightYarnCodeTableClass = tableHelper.getMaxHeightYarnCodeTableClass()
   // State
   const [open, setOpen] = useState(false)
   const [openUpsertForm, setOpenUpsertForm] = useState(false)
@@ -37,7 +39,8 @@ const YarnCode = () => {
   const [inforYarnItemDelete, setInforYarnItemDelete] = useState<any>(undefined)
   const [dataYarnCode, setDataYarnCode] = useState<IYarnCode | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(true)
-
+  // Filter state
+  const [filters, setFilters] = useState<IYarnCodeFilters>(filterHelper.getDefaultFilterYarnCode())
   // Data
   const data = Array.from({ length: 100 }, (_, i) => ({
     id: `id-${i + 1}`,
@@ -100,14 +103,23 @@ const YarnCode = () => {
     setOpenUpsertForm(false)
   }
 
+  const handleSearch = () => {
+    console.log('Filters: ', filters)
+  }
+
+  const handleResetFilter = () => {
+    setFilters(filterHelper.getDefaultFilterYarnCode())
+  }
+
   return (
     <BaseLayoutContent>
       {/* Filter */}
-      <YarnCodeFilter />
+      <YarnCodeFilters values={filters} onChange={setFilters} onSearch={handleSearch} />
 
       {/* Action */}
       <YarnCodeAction
         searchResults={19}
+        onResetFilter={handleResetFilter}
         onNewRegistrationAction={() => {
           setOpenUpsertForm(true)
         }}
@@ -118,9 +130,10 @@ const YarnCode = () => {
 
       {/* Table */}
       <TableCustom
-        columns={tableHelper.getColumnsYarnCodeTable(t, handleOpenDialogDeleteAction, handleOpenDialogEditAction)}
+        columns={columnHelper.getColumnsYarnCodeTable(t, handleOpenDialogDeleteAction, handleOpenDialogEditAction)}
         data={data}
         loading={isLoading}
+        maxHeightClass={maxHeightYarnCodeTableClass}
       />
 
       {/* Dialog delete*/}

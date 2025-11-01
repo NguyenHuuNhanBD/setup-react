@@ -1,5 +1,5 @@
 import TableCustom from '~/components/customs/table-custom'
-import tableHelper from '~/helpers/table.helper'
+import columnHelper from '~/helpers/column.helper'
 import useAppTranslations from '~/hooks/use-app-translations'
 
 export const DemoTable = () => {
@@ -8,7 +8,7 @@ export const DemoTable = () => {
   return (
     <section className='w-full'>
       <TableCustom
-        columns={tableHelper.getColumnsDemoTable(t)}
+        columns={columnHelper.getColumnsDemoTable(t)}
         data={[
           {
             id: '728ed522f',

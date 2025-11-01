@@ -1,17 +1,31 @@
 import * as React from 'react'
 
+import clsx from 'clsx'
 import { cn } from '~/lib/utils'
 
-function Table({ className, ...props }: React.ComponentProps<'table'>) {
+interface ITableProps extends React.ComponentProps<'table'> {
+  classNameWrapperTable?: string
+}
+
+function Table({ classNameWrapperTable, className, ...props }: ITableProps) {
   return (
-    <div data-slot='table-container' className='relative w-full overflow-x-auto'>
+    <div
+      data-slot='table-container'
+      className={clsx('relative w-full overflow-auto max-h-auto', classNameWrapperTable)}
+    >
       <table data-slot='table' className={cn('w-full caption-bottom text-sm', className)} {...props} />
     </div>
   )
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
-  return <thead data-slot='table-header' className={cn('[&_tr]:border-b', className)} {...props} />
+  return (
+    <thead
+      data-slot='table-header'
+      className={cn('[&_tr]:border-b sticky top-0 z-10 bg-background shadow-sm', className)}
+      {...props}
+    />
+  )
 }
 
 function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {

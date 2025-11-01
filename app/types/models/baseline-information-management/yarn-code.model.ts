@@ -6,3 +6,9 @@ export interface IYarnCode {
   yarnColor?: string
   note?: string
 }
+
+export interface IYarnCodeFilters {
+  yarnType?: eYarnType
+  yarnName?: string
+  yarnColor?: string
+}

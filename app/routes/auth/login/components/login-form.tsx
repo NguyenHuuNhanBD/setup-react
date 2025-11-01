@@ -40,7 +40,7 @@ const LoginForm = ({ onChangeStep }: ILoginFormProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col gap-[45px] bg-white p-[45px] rounded-[15px] w-[400px]'
+        className='flex flex-col gap-[45px] bg-white p-[45px] rounded-radius-main w-[400px]'
       >
         <FullLogoIcon className='w-[160px] h-[24px] self-center text-primary-main' />
 

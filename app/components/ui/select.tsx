@@ -46,9 +46,9 @@ function SelectTrigger({
       {children}
       <SelectPrimitive.Icon asChild>
         {iconCustom ? (
-          <ChevronDownIconCustom className='!w-5 !h-5 ml-[15px]' />
+          <ChevronDownIconCustom className='!w-5 !h-5 ml-space-main' />
         ) : (
-          <ChevronDownIcon className='size-5 text-black-main ml-[15px]' />
+          <ChevronDownIcon className='size-5 text-black-main ml-space-main' />
         )}
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>

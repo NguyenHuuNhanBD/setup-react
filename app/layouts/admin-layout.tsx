@@ -15,7 +15,7 @@ const AdminLayout = () => {
       <AppSidebar />
       <SidebarInset className='overflow-hidden'>
         <Header pageTitle={pageTitle} />
-        <section className='py-5 px-[30px] relative h-full w-full mt-[76px]'>
+        <section className='p-[30px] mt-[var(--height-header)] relative w-full h-auto overflow-hidden'>
           <Outlet />
         </section>
       </SidebarInset>

@@ -59,11 +59,11 @@ const DialogCustom = ({
       {triggerBtn && <DialogTrigger asChild>{triggerBtn}</DialogTrigger>}
 
       {/* Dialog content */}
-      <DialogContent className={clsx('sm:max-w-[425px] p-0 gap-[15px]', classNameContent)}>
+      <DialogContent className={clsx('sm:max-w-[425px] p-0 gap-space-main', classNameContent)}>
         {/* Dialog header */}
         <DialogHeader
           className={clsx(
-            'p-[15px] border-b border-light-gray !text-center',
+            'p-space-main border-b border-light-gray !text-center',
             hiddenHeader && 'hidden',
             classNameHeader
           )}
@@ -75,9 +75,9 @@ const DialogCustom = ({
         {/* Main content */}
         <section
           className={clsx(
-            'px-[15px]',
-            hiddenFooter && 'pb-[15px]',
-            hiddenHeader && 'pt-[15px]',
+            'px-space-main',
+            hiddenFooter && 'pb-space-main',
+            hiddenHeader && 'pt-space-main',
             classNameWrapperChildrenContent
           )}
         >
@@ -86,9 +86,9 @@ const DialogCustom = ({
 
         {/* Dialog footer */}
         {!hiddenFooter && (
-          <DialogFooter className='border-t border-light-gray p-[15px]'>
+          <DialogFooter className='border-t border-light-gray p-space-main'>
             {!hiddenCancelAction && !hiddenOkAction && (
-              <section className='flex-1 flex items-center justify-center gap-[15px]'>
+              <section className='flex-1 flex items-center justify-center gap-space-main'>
                 {!hiddenCancelAction && (
                   <DialogClose asChild>
                     <Button

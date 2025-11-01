@@ -37,11 +37,11 @@ export function NavMain({ sidebarMenu }: ISidebarMenuProps) {
                     asChild
                     data-active={isParentActive}
                     className={clsx(
-                      'data-[active=true]:bg-primary-main data-[active=true]:text-white h-[45px] py-[12.5px] px-[15px] rounded-[12px]',
+                      'data-[active=true]:bg-primary-main data-[active=true]:text-white h-[45px] py-[12.5px] px-space-main rounded-[12px]',
                       isParentActive ? 'hover:bg-primary-main! hover:text-white!' : 'hover:bg-gray-300!'
                     )}
                   >
-                    <Link to={item.url} className='flex items-center gap-[15px]'>
+                    <Link to={item.url} className='flex items-center gap-space-main'>
                       {item.icon && (
                         <item.icon
                           style={{ width: 20, height: 20 }}
@@ -63,7 +63,7 @@ export function NavMain({ sidebarMenu }: ISidebarMenuProps) {
                           className='py-2.5 px-5 h-10 flex items-center justify-start'
                         >
                           <SidebarMenuSubButton asChild data-active={isSubActive} className='bg-transparent!'>
-                            <Link to={subItem.url} className='flex items-center gap-[15px] group/item '>
+                            <Link to={subItem.url} className='flex items-center gap-space-main group/item '>
                               <section className='w-5 h-5 flex items-center justify-center'>
                                 <span
                                   className={clsx(

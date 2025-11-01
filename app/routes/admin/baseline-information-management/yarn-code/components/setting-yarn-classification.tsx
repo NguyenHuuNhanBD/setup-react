@@ -31,7 +31,7 @@ const SettingYarnClassification = ({ form }: ISettingYarnClassificationProps) =>
     <section className='grid grid-cols-2'>
       <article className='flex flex-col'>
         <section
-          className='flex items-center gap-1 py-3 px-[15px] cursor-pointer'
+          className='flex items-center gap-1 py-3 px-space-main cursor-pointer'
           onClick={() => {
             form.setValue(eSettingYarnFormKey.YarnType, '')
             form.clearErrors(eSettingYarnFormKey.YarnType)
@@ -48,7 +48,7 @@ const SettingYarnClassification = ({ form }: ISettingYarnClassificationProps) =>
               <section
                 key={yarn.value}
                 className={clsx(
-                  'group flex items-center justify-between gap-5 py-[10px] px-[15px] cursor-pointer hover:bg-primary-main/5',
+                  'group flex items-center justify-between gap-5 py-[10px] px-space-main cursor-pointer hover:bg-primary-main/5',
                   isActive ? 'bg-primary-main/5 text-primary-main' : 'bg-white text-black-main'
                 )}
                 onClick={() => {
@@ -65,7 +65,7 @@ const SettingYarnClassification = ({ form }: ISettingYarnClassificationProps) =>
         </section>
       </article>
       <Form {...form}>
-        <form className='w-full p-[15px] border-l border-light-gray'>
+        <form className='w-full p-space-main border-l border-light-gray'>
           {/* Yarn type */}
           <FormField
             control={form.control}

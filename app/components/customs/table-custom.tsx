@@ -20,6 +20,7 @@ interface DataTableProps<TData, TValue> {
   classNameTable?: string
   loading?: boolean
   skeletonLength?: number
+  maxHeightClass?: string
 }
 
 const TableCustom = <TData, TValue>({
@@ -27,7 +28,8 @@ const TableCustom = <TData, TValue>({
   data,
   classNameTable,
   loading,
-  skeletonLength = 9
+  skeletonLength = 9,
+  maxHeightClass
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -54,16 +56,16 @@ const TableCustom = <TData, TValue>({
   const skeletonRows = Array.from({ length: skeletonLength })
   return (
     <section className='flex flex-col gap-[30px] w-full'>
-      <section className='main-shadow'>
-        <Table className={clsx('table-fixed bg-white', classNameTable)}>
+      <section className='rounded-radius-main border border-light-gray overflow-hidden main-shadow'>
+        <Table className={clsx('table-fixed bg-white', classNameTable)} classNameWrapperTable={maxHeightClass}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className='[&>th:last-child]:border-r-0'>
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead
                       key={header.id}
-                      className='border-[2px] border-light-gray'
+                      className='border-r-[3px] border-r-light-gray border-b border-b-light-gray'
                       style={{ width: header.column.getSize() }}
                     >
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
@@ -76,9 +78,12 @@ const TableCustom = <TData, TValue>({
           <TableBody>
             {loading ? (
               skeletonRows.map((_, i) => (
-                <TableRow key={`skeleton-${i}`}>
+                <TableRow key={`skeleton-${i}`} className='[&>td:last-child]:border-r-0'>
                   {columns.map((_, j) => (
-                    <TableCell key={`skeleton-cell-${j}`} className='border-[2px] border-light-gray'>
+                    <TableCell
+                      key={`skeleton-cell-${j}`}
+                      className='border-r-[3px] border-r-light-gray border-b border-b-light-gray'
+                    >
                       <Skeleton className='h-3' />
                     </TableCell>
                   ))}
@@ -86,9 +91,16 @@ const TableCustom = <TData, TValue>({
               ))
             ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                  className='[&>td:last-child]:border-r-0'
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className='border-[2px] border-light-gray'>
+                    <TableCell
+                      key={cell.id}
+                      className='border-r-[3px] border-r-light-gray border-b border-b-light-gray'
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -96,7 +108,10 @@ const TableCustom = <TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center border-[2px] border-light-gray'>
+                <TableCell
+                  colSpan={columns.length}
+                  className='h-24 text-center !border-r-[3px] !border-r-light-gray !border-b !border-b-light-gray'
+                >
                   No results.
                 </TableCell>
               </TableRow>

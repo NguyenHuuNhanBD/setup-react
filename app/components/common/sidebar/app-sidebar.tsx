@@ -13,7 +13,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className='py-[10px] px-5 mt-5'>
         <TeamSwitcher />
       </SidebarHeader>
-      <SidebarContent className='mt-[15px] scrollbar-hide'>
+      <SidebarContent className='mt-space-main scrollbar-hide'>
         <NavMain sidebarMenu={layoutHelper.getSidebarMenu(t)} />
       </SidebarContent>
       <SidebarRail />

@@ -8,7 +8,7 @@ const SelectAccountType = () => {
   const { t } = useAppTranslations()
   const navigate = useNavigate()
   return (
-    <section className='flex flex-col items-center gap-[30px] p-[45px] main-shadow bg-white rounded-[15px] m-5'>
+    <section className='flex flex-col items-center gap-[30px] p-[45px] main-shadow bg-white rounded-radius-main m-5'>
       <FullLogoIcon className='w-[160px] h-6 text-primary-main' />
       <section className='flex flex-wrap items-center gap-[30px]'>
         {DATA.GET_ACCOUNT_TYPE(t).map((item) => {
@@ -16,7 +16,7 @@ const SelectAccountType = () => {
             <section
               key={item.color}
               className={clsx(
-                'flex items-center justify-center gap-[15px] bg-light-gray rounded-[25px] cursor-pointer hover:scale-[1.1] transition-all duration-300 card-shadow',
+                'flex items-center justify-center gap-space-main bg-light-gray rounded-[25px] cursor-pointer hover:scale-[1.1] transition-all duration-300 card-shadow',
                 'py-5 px-5 sm:py-[30px] sm:px-[45px] lg:py-[45px] lg:px-[60px] flex-1 sm:flex-auto'
               )}
               onClick={() => {

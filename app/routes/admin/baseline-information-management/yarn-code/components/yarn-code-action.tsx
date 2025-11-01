@@ -7,9 +7,11 @@ interface IYarnCodeActionProps {
   searchResults?: number
   onNewRegistrationAction: () => void
   onSettingYarnClassfication: () => void
+  onResetFilter: () => void
 }
 const YarnCodeAction = ({
   searchResults = 0,
+  onResetFilter,
   onNewRegistrationAction,
   onSettingYarnClassfication
 }: IYarnCodeActionProps) => {
@@ -20,7 +22,7 @@ const YarnCodeAction = ({
         {t(TRANSLATE_KEYS.COMMON, 'searchResults')}({searchResults})
       </p>
       <section className='flex flex-wrap items-center gap-5'>
-        <Button className='bg-[white] text-black-main main-shadow'>
+        <Button className='bg-[white] text-black-main main-shadow' onClick={onResetFilter}>
           {t(TRANSLATE_KEYS.ACTION, 'deleteSelection')}
         </Button>
         <Button className='bg-[#965EF5]' onClick={onSettingYarnClassfication}>

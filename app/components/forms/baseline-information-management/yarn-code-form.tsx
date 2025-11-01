@@ -29,7 +29,7 @@ const YarnCodeForm = ({ form, data }: IYarnCodeFormProps) => {
 
   return (
     <Form {...form}>
-      <form className='grid grid-cols-2 gap-[15px] items-start'>
+      <form className='grid grid-cols-2 gap-space-main items-start'>
         {/* Yarn type */}
         <FormField
           control={form.control}
