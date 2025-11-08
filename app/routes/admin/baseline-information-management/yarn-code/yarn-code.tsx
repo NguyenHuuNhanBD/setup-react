@@ -24,6 +24,9 @@ import YarnCodeFilters from '~/routes/admin/baseline-information-management/yarn
 import useGlobalLoaderStore from '~/stores/global-loader'
 import { type IYarnCode, type IYarnCodeFilters, eYarnType } from '~/types'
 
+export function hydrateFallback() {
+  return <div className='flex items-center justify-center bg-[red] h-[600px]'>Loading...</div>
+}
 export function meta() {
   return [{ title: 'ERP - Yarn code' }, { name: 'ERP Yarn code', content: 'Welcome to ERP' }]
 }

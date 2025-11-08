@@ -8,7 +8,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSubButton,
-  SidebarMenuSubItem
+  SidebarMenuSubItem,
+  useSidebar
 } from '~/components/ui/sidebar'
 import type { ISidebarMenu } from '~/types'
 
@@ -17,6 +18,8 @@ export interface ISidebarMenuProps {
 }
 
 export function NavMain({ sidebarMenu }: ISidebarMenuProps) {
+  const { openMobile, isMobile, setOpenMobile, state } = useSidebar()
+  const isCollapsed = state === 'collapsed'
   const location = useLocation()
   return (
     <SidebarGroup className='p-[15px]'>
@@ -37,7 +40,8 @@ export function NavMain({ sidebarMenu }: ISidebarMenuProps) {
                     asChild
                     data-active={isParentActive}
                     className={clsx(
-                      'data-[active=true]:bg-primary-main data-[active=true]:text-white h-[45px] py-[12.5px] px-space-main rounded-[12px]',
+                      'data-[active=true]:bg-primary-main data-[active=true]:text-white h-[45px] py-[12.5px] px-space-main ',
+                      !isMobile && (isCollapsed ? 'rounded-[6px]' : 'rounded-[12px]'),
                       isParentActive ? 'hover:bg-primary-main! hover:text-white!' : 'hover:bg-gray-300!'
                     )}
                   >
@@ -54,7 +58,13 @@ export function NavMain({ sidebarMenu }: ISidebarMenuProps) {
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <ul>
+                  <ul
+                    onClick={() => {
+                      if (isMobile) {
+                        setOpenMobile(!openMobile)
+                      }
+                    }}
+                  >
                     {item?.items?.map((subItem) => {
                       const isSubActive = location.pathname === subItem.url
                       return (

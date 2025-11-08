@@ -3,8 +3,9 @@ import { FilterField } from '~/components/features/filters/filter-field'
 import { SelectItem } from '~/components/ui/select'
 import { DATA, TRANSLATE_KEYS } from '~/constants'
 import useAppTranslations from '~/hooks/use-app-translations'
-import { BaseFilterLayout } from '~/layouts/base-layout-filter'
-import type { IYarnCodeFilters } from '~/types'
+import { BaseLayoutFilter } from '~/layouts/base-layout-filter'
+import BaseLayoutFilterItem from '~/layouts/base-layout-filter-item'
+import type { IYarnCodeFilters, eYarnType } from '~/types'
 
 interface IYarnCodeFiltersProps {
   values: IYarnCodeFilters
@@ -15,53 +16,55 @@ interface IYarnCodeFiltersProps {
 const YarnCodeFilters = ({ values, onChange, onSearch }: IYarnCodeFiltersProps) => {
   const { t } = useAppTranslations()
 
-  const handleChange = (key: keyof IYarnCodeFilters, value: any) => {
+  const handleChange = <K extends keyof IYarnCodeFilters>(key: K, value: IYarnCodeFilters[K]) => {
     onChange({ ...values, [key]: value })
   }
 
   return (
-    <BaseFilterLayout onSearch={onSearch}>
-      <FilterField label={t(TRANSLATE_KEYS.LABEL, 'yarnType')}>
-        <SelectCustom
-          placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectYarnType')}
-          classNameSelectTrigger='w-[129px]'
-          value={values.yarnType}
-          onChange={(v) => handleChange('yarnType', v)}
-        >
-          {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => (
-            <SelectItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </SelectItem>
-          ))}
-        </SelectCustom>
-      </FilterField>
+    <BaseLayoutFilter onSearchMobile={onSearch}>
+      <BaseLayoutFilterItem onSearch={onSearch}>
+        <FilterField label={t(TRANSLATE_KEYS.LABEL, 'yarnType')}>
+          <SelectCustom
+            placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectYarnType')}
+            classNameSelectTrigger='w-[129px]'
+            value={values.yarnType}
+            onChange={(v) => handleChange('yarnType', v as eYarnType)}
+          >
+            {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectCustom>
+        </FilterField>
 
-      <FilterField label={t(TRANSLATE_KEYS.LABEL, 'yarnName')}>
-        <SelectCustom
-          placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheOriginalName')}
-          classNameSelectTrigger='w-[115px]'
-        >
-          {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => (
-            <SelectItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </SelectItem>
-          ))}
-        </SelectCustom>
-      </FilterField>
+        <FilterField label={t(TRANSLATE_KEYS.LABEL, 'yarnName')}>
+          <SelectCustom
+            placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheOriginalName')}
+            classNameSelectTrigger='w-[115px]'
+          >
+            {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectCustom>
+        </FilterField>
 
-      <FilterField label={t(TRANSLATE_KEYS.LABEL, 'yarnColor')}>
-        <SelectCustom
-          placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheColor')}
-          classNameSelectTrigger='w-[102px]'
-        >
-          {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => (
-            <SelectItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </SelectItem>
-          ))}
-        </SelectCustom>
-      </FilterField>
-    </BaseFilterLayout>
+        <FilterField label={t(TRANSLATE_KEYS.LABEL, 'yarnColor')}>
+          <SelectCustom
+            placeholder={t(TRANSLATE_KEYS.INPUT_PLACEHOLDER, 'selectTheColor')}
+            classNameSelectTrigger='w-[102px]'
+          >
+            {DATA.GET_YARN_TYPE_OPTIONS(t).map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectCustom>
+        </FilterField>
+      </BaseLayoutFilterItem>
+    </BaseLayoutFilter>
   )
 }
 

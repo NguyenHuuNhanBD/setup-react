@@ -77,7 +77,8 @@
     "settingYarnClassification": "원사구분 설정",
     "newRegistration": "신규 등록",
     "cancel": "취소",
-    "check": "확인"
+    "check": "확인",
+    "ok": "확인"
   },
   "confirm": {
     "areYouSureYouWantToDeleteIt": "정말 삭제하시겠어요?"

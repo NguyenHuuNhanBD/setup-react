@@ -1,9 +1,11 @@
 export function meta() {
   return [{ title: 'ERP - Item code' }, { name: 'ERP System', content: 'Welcome to ERP' }]
 }
+
 const ItemCode = () => {
   return (
     <section className='w-full flex flex-col gap-5'>
+      Item code
       {/* <Select>
         <SelectTrigger isHiddenBorder>
           <SelectValue placeholder='몸판 등 구분 선택' />

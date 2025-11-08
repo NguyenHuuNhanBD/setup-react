@@ -17,13 +17,13 @@ const Header = ({ pageTitle }: IHeaderProps) => {
         'flex flex-wrap gap-space-main shrink-0 items-center justify-between transition-all ease-linear py-5 px-[30px] shadow-sm',
         'fixed top-0 right-0 z-50',
         'bg-[#fafafa]/20 backdrop-blur-sm',
-        !isMobile && (isCollapsed ? 'left-[4rem]' : 'left-[16rem]'),
+        !isMobile && (isCollapsed ? 'left-[4.5rem]' : 'left-[16rem]'),
         isMobile && 'left-0'
       )}
     >
       <section className='flex items-center gap-[30px]'>
         <SidebarTrigger className='cursor-pointer' />
-        <p className='font-bold text-[22px] leading-[30px] tracking-[-0.5%] hidden md:block'>{pageTitle}</p>
+        <p className='font-bold text-[22px] leading-[30px] tracking-[-0.5%] hidden lg:block'>{pageTitle}</p>
       </section>
       <section className='flex flex-wrap items-center gap-[30px]'>
         {/* Icon */}
@@ -62,9 +62,7 @@ const Header = ({ pageTitle }: IHeaderProps) => {
         </section>
 
         {/* Action */}
-        <Button className='border-[2px] border-[#E1E6E8] rounded-[10px] h-9 py-2 px-5 bg-[#F2F4F7] text-[#A4B5BA] font-semibold leading-[20px] tracking-[-0.5%] !hidden md:!block'>
-          종료
-        </Button>
+        <Button className='bg-[#F2F4F7] text-[#A4B5BA] border-[2px]'>종료</Button>
       </section>
     </header>
   )

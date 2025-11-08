@@ -18,7 +18,7 @@ const SIDEBAR_COOKIE_NAME = 'sidebar_state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = '16rem'
 const SIDEBAR_WIDTH_MOBILE = '18rem'
-const SIDEBAR_WIDTH_ICON = '4rem'
+const SIDEBAR_WIDTH_ICON = '4.5rem'
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 
 type SidebarContextProps = {
@@ -237,25 +237,13 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
   const { toggleSidebar } = useSidebar()
 
   return (
-    <Button
-      data-sidebar='trigger'
-      data-slot='sidebar-trigger'
-      variant='ghost'
-      size='icon'
-      className={cn('size-7', className)}
-      onClick={(event) => {
+    <SidebarToggleIcon
+      className='text-black-main w-5 h-[18px] cursor-pointer hover:scale-[1.1] transition-all duration-300 hover:text-primary-main'
+      onClick={(event: any) => {
         onClick?.(event)
         toggleSidebar()
       }}
-      {...props}
-    >
-      {/* Default icon library shadcn */}
-      {/* <PanelLeftIcon /> */}
-
-      {/* Icon custom for ERP */}
-      <SidebarToggleIcon className='text-black-main w-5 h-[18px]' />
-      <span className='sr-only'>Toggle Sidebar</span>
-    </Button>
+    />
   )
 }
 
